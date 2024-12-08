@@ -7,9 +7,9 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "rea
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white  w-full">
       {/* Top Section */}
-      <div className="flex md:mt-[800px] flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
+      <div className="flex md:mt-[600px] flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
         <div className="md:w-1/2 w-full">
           <h2 className="text-2xl md:text-4xl font-semibold">
             <span className="text-[#FF9F0D]">St</span>ill You Need Our Support?

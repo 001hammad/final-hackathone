@@ -29,7 +29,8 @@ const Categories = () => {
 
        {/* Why Choose Us Section  */}
 
-       <div className="flex flex-col  md:ml-[100px] justify-cter it-center md:flex-row text-white md:mt-[120px]">
+       <div className=" w-full bg-cover bg-center relative flex flex-col  md:ml-[100px] justify-cter it-center md:flex-row text-white md:mt-[120px]"  style={{ backgroundImage: "url('assets/background.svg')" }} 
+       >
         <div>
             <div className="flex md:mr-[100px] flex-col gap-3">
              <div className="flex flex-col md:flex-row gap-3">

@@ -26,10 +26,10 @@ const Navbar: React.FC = () => {
             {/* Main Navigation for Desktop */}
             <div className="hidden md:flex flex-row items-center justify-around w-full p-2 transition-all duration-300 ease-in-out">
                 <div className="flex items-center space-x-4">
-                    <Link href="/" className="hover:text-yellow-500 text-white">
+                    <Link href="/" className="hover:text-yellow-500 cursor-pointer text-white">
                         Home
                     </Link>
-                    <Link href="/menu" className="hover:text-yellow-500 text-white">
+                    <Link href="/Menupage" className="hover:text-yellow-500 text-white">
                         Menu
                     </Link>
                     <Link href="/blog" className="hover:text-yellow-500 text-white">
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                 <Link href="/" className="hover:text-yellow-500 text-white">
                     Home
                 </Link>
-                <Link href="/menu" className="hover:text-yellow-500 text-white">
+                <Link href="/Menupage" className="hover:text-yellow-500 text-white">
                     Menu
                 </Link>
                 <Link href="/blog" className="hover:text-yellow-500 text-white">
