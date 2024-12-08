@@ -1,9 +1,13 @@
 import React from 'react'
+import LandingPage from './Components/Header'
+import Hero from './Components/Hero'
+import Categories from './Components/Categories'
 
 const Home = () => {
   return (
-    <div className='flex justify-center items-center bg-blue-300 p-4'>
-      My Figma Final Hackathone 
+    <div>
+      <LandingPage/>
+      <Categories/>
     </div>
   )
 }
