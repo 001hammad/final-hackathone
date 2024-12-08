@@ -23,39 +23,7 @@ const Header = () => {
             style={{ objectFit: 'cover', opacity: 0.5, zIndex: -1 }}
           />
         </div>
-        {/* Navigation */}
-        <div className='text-white md:h-[87px] w-full'>
-          <div className='md:flex md:ml-[130px]'>
-            <ul className='md:flex flex md:gap-0 gap-3 justify-center items-center'>
-              {['Home', 'Menu', 'Blog', 'Pages', 'About', 'Shop', 'Contact'].map((item, index) => (
-                <li 
-                  key={index} 
-                  className={`${InterFont.className} md:w-[45px] md:mt-[48px] font-normal text-[16px] md:mx-3 leading-[24px] text-[#FFFFFF] md:h-[24px]`}
-                >
-                  {item}
-                </li>
-              ))}
-              <li className={` ${InterFont.className} md:w-[45px] md:mt-[48px] text-[#FFFFFF]`}>
-                <Image src='/down-arrow.png' alt='vector' width={10} height={10} />
-              </li>
-            </ul>
-            <h2 className='md:w-[109px] h-[32px] md:mt-[20px] ml-[33%] md:my-0 my-[30px] text-[40px] md:ml-0 font-bold md:text-[24px] leading-[32px]'>
-              <span className="text-[#EB8317] md:ml-[60px]">Food</span>
-              <span className="text-white">tuck</span>
-            </h2>
-            <div className='md:flex flex gap-[50%] md:gap-40 md:w-[310px] md:h-[54px] md:mt-[43px] border-[1px] md:m-0 m-3 border-[#FF9F0D] rounded-[27px] md:ml-[20%]'>
-              <p className={`${InterFont.className} font-normal text-[16px] leading-[24px] text-[#FFFFFF] md:m-3 md:p-0 p-6`}>
-                Search...
-              </p>
-              <p className='md:m-3 text-[#FFFFFF] md:p-0 p-6'>
-                <Image src='/seach-icon.png' alt='vector' width={24} height={24} />
-              </p>
-            </div>
-            <p className='md:mt-14 md:ml-2 ml-[200px]'>
-              <Image src='/Handbag.png' height={24} width={24} alt='vector' />
-            </p>
-          </div>
-        </div>
+        
         {/* Hero Section */}
         <div className='flex gap-[20px] md:mt-0 mt-[40px] md:gap-[80px]'>
           <div className='flex flex-col md:ml-0 ml-9'>

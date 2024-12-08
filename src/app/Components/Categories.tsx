@@ -8,7 +8,7 @@ const VibeFont = Great_Vibes({ subsets: ["latin"], weight: ["400"] });
 
 const Categories = () => {
   return (
-    <div className='bg-black h-[3000px] '>
+    <div className='bg-black h-2000px] '>
       <p className={`${VibeFont.className} text-[#FF9F0D] md:ml-[630px] leading-[40px] md:w-[177px] font-normal text-[32px] md:h-[40px]  ml-[130px]`}>Food Category</p>
       <p className="md:w-[446px] md:h-[56px] font-bold md:text-[48px] text-[40px] ml-[30px] md:mb-[40px]  md:ml-[500px] leading-[56px] text-[#FFFFFF] md:my-0 my-[40px]"><span className="text-[#FF9F0D]">Ch</span>oose Food Iteam</p>
       <div className="flex ml-[60px] flex-col md:flex-row text-white gap-[30px] md:ml-[100px] ">
