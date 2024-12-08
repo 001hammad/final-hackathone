@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-
 
 import { PiClockClockwiseBold } from "react-icons/pi";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
@@ -87,7 +85,7 @@ const Footer = () => {
           <ul className="space-y-6">
             {[1, 2, 3].map((_, index) => (
               <li key={index} className="flex gap-4">
-                <Image src="/assets/footer-1.svg" alt="Post" width={80} height={80} />
+                {/* <Image src="/assets/footer-1.svg" alt="Post" width={80} height={80} /> */}
                 <div>
                   <p className="text-xs text-gray-400">20 Feb 2022</p>
                   <p className="text-sm text-gray-200">Keep Your Business</p>

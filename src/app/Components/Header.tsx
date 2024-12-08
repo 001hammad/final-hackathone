@@ -51,7 +51,7 @@ const Header = () => {
               </h5>
             </div>
             <div className='text-white md:h-[670px] md:mt-[110px] '>
-              <Image src='/image.png' alt='heropic' width={624} height={624} />
+              <Image src='/mypic.png' alt='heropic' width={624} height={624} />
             </div>
           </div>
         </div>

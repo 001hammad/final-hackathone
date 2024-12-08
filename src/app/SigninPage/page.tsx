@@ -74,11 +74,11 @@ export default function SignInPage() {
           <div className="text-center mt-8">
             <p>or</p>
             <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
-              <img src="public/assets/Google.svg" alt="Google" className="h-6 mr-2" />
+              {/* <Image src="public/assets/Google.svg" alt="Google" className="h-6 mr-2" /> */}
               Sign in with Google
             </button>
             <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
-              <img src="public/assets/Apple.svg" alt="Apple" className="h-6 mr-2" />
+              {/* <Image src="public/assets/Apple.svg" alt="Apple" height={10} width={10}  /> */}
               Sign in with Apple
             </button>
           </div>
