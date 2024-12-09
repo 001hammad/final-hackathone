@@ -60,13 +60,13 @@ export default function Aboutus() {
       </section>
 
       {/* Second Section */}
-      <section className="text-white body-font">
-        <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col w-[579px]">
-            <h1 className="text-white text-3xl text-bold mt-3">Why Choose Us</h1>
-            <p className="text-white text-center mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam 
+      <section className="text-black body-font">
+        <div className="container mx-auto flex   items-center justify-center flex-col ">
+            <h1 className="text-black text-3xl text-bold mt-3">Why Choose Us</h1>
+            <p className="text-black text-center mt-2 w-[579px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam 
             pellentesque bibendum non dui volutpat fringilla bibendum.</p>
           <Image
-            className="mb-10  md:w-[230%] h-[286px] mt-1552px  mt-10"
+            className="mb-10  md:w-[2530%] md:h-[500px] md:mt-[12px]  mt-10"
             alt="hero"
             src = "/about.png"
             width={1320} height={386}

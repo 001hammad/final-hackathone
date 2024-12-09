@@ -131,34 +131,40 @@ const Menu = () => {
 
       <div className="text-white  w-full bg-cover bg-center relative flex flex-col md:flex-row md:m-[80px] md:mt-[160px]"  style={{ backgroundImage: "url('/star1.png')" }} 
       >
-        <div className="flex flex-col">
-         <div className="md:ml-[135px]">
-          <Image src='/cap.png' alt="cap-pic" height={120} width={120}/>
-         </div>
-         <p className="md:w-[218px] md:h-[32px] font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:ml-[100px] md:my-6">Professional Chefs</p>
-         <p className="md:w-[67px] md:h-[48px] font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:ml-[165px]">420</p>
-        </div>
-        <div className="flex flex-col">
-         <div className="md:ml-[135px]">
-          <Image src='/juice.png' alt="cap-pic" height={120} width={120}/>
-         </div>
-         <p className="md:w-[218px] md:h-[32px] font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:ml-[100px] md:my-6">Professional Chefs</p>
-         <p className="md:w-[67px] md:h-[48px] font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:ml-[165px]">420</p>
-        </div>
-        <div className="flex flex-col">
-         <div className="md:ml-[135px]">
-          <Image src='/spoon.png' alt="cap-pic" height={120} width={120}/>
-         </div>
-         <p className="md:w-[218px] md:h-[32px] font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:ml-[100px] md:my-6">Professional Chefs</p>
-         <p className="md:w-[67px] md:h-[48px] font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:ml-[165px]">420</p>
-        </div>
-        <div className="flex flex-col ">
-         <div className="md:ml-[135px]">
-          <Image src='/pizza.png' alt="cap-pic" height={120} width={120}/>
-         </div>
-         <p className="md:w-[218px] md:h-[32px] font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:ml-[100px] md:my-6">Professional Chefs</p>
-         <p className="md:w-[67px] md:h-[48px] font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:ml-[165px]">420</p>
-        </div>
+       <div className="flex flex-col items-center md:flex-row md:space-x-8">
+  <div className="flex flex-col items-center md:items-start">
+    <div className='md:ml-[140px]'>
+      <Image src='/cap.png' alt="cap-pic" height={120} width={120}/>
+    </div>
+    <p className="font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:text-[24px] md:w-[218px] md:h-[32px] md:ml-[100px] md:my-6 text-center">Professional Chefs</p>
+    <p className="font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:text-[40px] md:w-[67px] md:h-[48px] md:ml-[165px] text-center">420</p>
+  </div>
+
+  <div className="flex flex-col items-center md:items-start">
+    <div className='md:ml-[140px]'>
+      <Image src='/juice.png' alt="cap-pic" height={120} width={120}/>
+    </div>
+    <p className="font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:text-[24px] md:w-[218px] md:h-[32px] md:ml-[100px] md:my-6 text-center">Professional Chefs</p>
+    <p className="font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:text-[40px] md:w-[67px] md:h-[48px] md:ml-[165px] text-center">420</p>
+  </div>
+
+  <div className="flex flex-col items-center md:items-start">
+    <div className='md:ml-[140px]'>
+      <Image src='/spoon.png' alt="cap-pic" height={120} width={120} />
+    </div>
+    <p className="font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:text-[24px] md:w-[218px] md:h-[32px] md:ml-[100px] md:my-6 text-center">Professional Chefs</p>
+    <p className="font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:text-[40px] md:w-[67px] md:h-[48px] md:ml-[165px] text-center">420</p>
+  </div>
+
+  <div className="flex flex-col items-center md:items-start">
+    <div className='md:ml-[140px]'>
+      <Image src='/pizza.png' alt="cap-pic" height={120} width={120}/>
+    </div>
+    <p className="font-bold text-[24px] leading-[32px] text-[#FFFFFF] md:text-[24px] md:w-[218px] md:h-[32px] md:ml-[100px] md:my-6 text-center">Professional Chefs</p>
+    <p className="font-bold text-[40px] leading-[48px] text-[#FFFFFF] md:text-[40px] md:w-[67px] md:h-[48px] md:ml-[165px] text-center">420</p>
+  </div>
+</div>
+ 
        
        </div>
 
