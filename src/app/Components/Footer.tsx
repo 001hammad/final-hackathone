@@ -9,10 +9,10 @@ const Footer = () => {
       {/* Top Section */}
       <div className="flex md:mt-[600px] flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
         <div className="md:w-1/2 w-full">
-          <h2 className="text-2xl md:text-4xl font-semibold">
+          <h2 className="text-2xl md:text-4xl md:ml-[50px] font-semibold">
             <span className="text-[#FF9F0D]">St</span>ill You Need Our Support?
           </h2>
-          <p className="text-sm md:text-base font-light mt-4">
+          <p className="text-sm md:text-base font-light md:ml-[50px] mt-4">
             Don&#39;t wait make a smart & logical quote here. Its pretty easy.
           </p>
         </div>
@@ -35,7 +35,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto py-8 md:py-12 px-6 md:px-[135px] grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
         {/* About Us */}
         <div>
-          <h2 className="mb-6 text-xl font-semibold uppercase">About Us</h2>
+          <h2 className="mb-6 text-xl font-semibold ">About Us</h2>
           <p className="text-sm text-gray-300">
             Corporate clients and leisure travelers have been relying on Groundlink for dependable, safe, and professional chauffeured car services in major cities worldwide.
           </p>
@@ -53,7 +53,7 @@ const Footer = () => {
 
         {/* Useful Links */}
         <div>
-          <h2 className="mb-6 text-xl font-semibold uppercase">Useful Links</h2>
+          <h2 className="mb-6 text-xl font-semibold ">Useful Links</h2>
           <ul className="space-y-4 text-gray-300">
             {["About", "News", "Partner", "Team", "Menu", "Contact"].map((Link, index) => (
               <li key={index}>
@@ -67,7 +67,7 @@ const Footer = () => {
 
         {/* Help Section */}
         <div>
-          <h2 className="mb-6 text-xl font-semibold uppercase">Help?</h2>
+          <h2 className="mb-6 text-xl font-semibold ">Help?</h2>
           <ul className="space-y-4 text-gray-300">
             {["FAQ", "Terms & Conditions", "Reporting", "Documentation", "Support Policy", "Privacy"].map((Link, index) => (
               <li key={index}>
@@ -81,7 +81,7 @@ const Footer = () => {
 
         {/* Recent Posts */}
         <div>
-          <h2 className="mb-6 text-xl font-semibold uppercase">Recent Post</h2>
+          <h2 className="mb-6 text-xl font-semibold ">Recent Post</h2>
           <ul className="space-y-6">
             {[1, 2, 3].map((_, index) => (
               <li key={index} className="flex gap-4">

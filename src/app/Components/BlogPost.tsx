@@ -10,10 +10,10 @@ const BlogPost = () => {
   return (
     <div>
         <div>
-      <h4 className={`${VibeFont.className} text-white text-[32px] md:ml-[700px] md:my-[10px]`}>Blog Post</h4>
-      <h4 className='font-bold  text-[48px] leading-[56px text-white ]'><span className='text-[#FF9F0D] md:ml-[550px] '>La</span>test News & Blog</h4>
+      <h4 className={`${VibeFont.className} text-white text-[32px] md:ml-[700px] ml-[120px] md:my-[10px] md:mt-[4-px] mt-[140px]`}>Blog Post</h4>
+      <h4 className='font-bold  text-[30px] md:ml-0 ml-[40px] md:text-[48px] leading-[56px text-white ] md:mb-0 mb-[40px]'><span className='text-[#FF9F0D] md:ml-[550px] '>La</span>test News & Blog</h4>
     </div>
-    <div className='flex flex-col md:flex-row justify-center items-center gap-9 md:mt-[50px] text-white'>
+    <div className='flex flex-col md:flex-row justify-center items-center gap-9 md:mt-[50px] text-white md:p-0 p-10'>
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-black border border-white">
   <Image src="/card1.png" alt="card1" width={424} height={569} className="w-full h-auto" />
   
