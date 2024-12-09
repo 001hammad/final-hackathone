@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -49,7 +49,7 @@ export default function SevenHero() {
               className="rounded-full border-4 border-white"
             />
           </div>
-          <div className="text-6xl text-amber-500 mb-4">"</div>
+          <div className="text-6xl text-amber-500 mb-4">&quot;</div>
           <p className="text-gray-600 mb-6">{testimonials[currentTestimonial].quote}</p>
           
           {/* Stars */}
