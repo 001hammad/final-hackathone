@@ -11,7 +11,8 @@ export default function SignInPage() {
       {/* Background Image */}
       <div
         className="h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center"
-        style={{ backgroundImage: "url('assets/header.svg')" }}>
+        // style={{ backgroundImage: "url('assets/header.svg')" }}
+        >
     
         {/* Navbar */}
         <Navbar />

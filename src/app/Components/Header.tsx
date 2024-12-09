@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div>
       {/* Header Section */}
-      <div className='w-full h-[950px]  bg-[#0D0D0DF2] relative'>
+      <div className='w-full h-[800px]  bg-[#0D0D0DF2] relative'>
         {/* Background Image */}
         <div className="absolute top-0 left-0 w-full h-full">
           <Image 
@@ -38,20 +38,20 @@ const Header = () => {
           <div className='flex flex-col md:gap-[180px] md:flex-row'>
             <div className=' md:mt-[160px] flex flex-col md:w-[472px] md:h-[356px]'>
               <p className={`${VibeFont.className} text-[32px] text-[#FF9F0D]`}>Its Quick & Amusing!</p>
-              <h1 className='font-bold text-[60px] leading-[68px] text-[#FFFFFF]'>
+              <h1 className='font-bold text-[30px] md:text-[60px] leading-[68px] text-[#FFFFFF]'>
                 <span className='text-orange-400'>Th</span>e Art of speed food Quality
               </h1>
-              <p className='md:w-[418px] md:h-[48px] leading-[24px] text-base text-[#FFFFFF] md:mt-5 md:my-0 my-4'>
+              <p className='md:w-[418px] md:h-[48px] leading-[24px] text-[14px] md:text-base text-[#FFFFFF] md:mt-5 md:my-0 my-4'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius sed pharetra dictum neque massa congue
               </p>
-              <h5 className='md:w-[165px] w-[140px] rounded-[30px] md:h-[80px] bg-[#FF9F0D] flex justify-center items-center md:py-3 h-[50px] md:mt-[20px]'>
+              <h5 className='md:w-[165px] w-[120px] rounded-[30px] md:h-[80px] bg-[#FF9F0D] flex justify-center items-center md:py-3 h-[50px] md:mt-[20px]'>
                 <p className={`${InterFont.className} text-[#E0DFDF] font-normal text-[16px] leading-[24px]`}>
                   See Menu
                 </p>
               </h5>
             </div>
-            <div className='text-white md:h-[670px] md:mt-[110px] '>
-              <Image src='/mypic.png' alt='heropic' width={624} height={624} />
+            <div className='text-white md:h-[670px] md:mt-[110px] mt-[30px] md:mr-0 mr-[10px] '>
+              <Image src='/mypic.png' alt='heropic' width={624} height={624} className=''/>
             </div>
           </div>
         </div>
