@@ -18,8 +18,8 @@ function Hero() {
               Home
             </Link>
             <span className='text-white'>/</span>
-            <Link href="/logIn" className='text-[#FF9F0D]'>
-              Signup
+            <Link href="/SigninPage" className='text-[#FF9F0D]'>
+              Sign In
             </Link>
           </div>
           

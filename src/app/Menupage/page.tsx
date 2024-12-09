@@ -10,8 +10,10 @@ const Menu = () => {
     <div className="bg-white min-h-screen flex flex-col items-center">
       {/* Header */}
       <header className="relative bg-black w-full ">
+      <Navbar/>
         {/* Background Image */}
         <div className="h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center relative">
+          
           <Image
             src="/starbg.png"
             alt="Header Image"
@@ -19,7 +21,7 @@ const Menu = () => {
             objectFit="cover"
             priority
           />
-          <Navbar/>
+         
           {/* Centered Text */}
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">Our Menu</h1>

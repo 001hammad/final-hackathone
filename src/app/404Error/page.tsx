@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Hero from "./Hero"
+import Footer from "../Components/Footer";
 
 export default function ErrorPage() {
   return (
     <>
     <Hero />
     <div className="min-h-screen bg-white">
+      
       
       {/* Signup Form Section */}
       <section className="p-10 relative bg-white pt-36 flex flex-col items-center">
@@ -28,6 +30,7 @@ export default function ErrorPage() {
           </Link>
         </div>
       </section>
+      <Footer/>
     </div>
  </>
   );

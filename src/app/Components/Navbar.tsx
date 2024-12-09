@@ -41,9 +41,12 @@ const Navbar: React.FC = () => {
                     <Link href="/Menupage" className="hover:text-yellow-500 text-white">
                         Menu
                     </Link>
-                    <p className='text-white'>Pages</p>
-                    <Link href="/shop" className="hover:text-yellow-500 text-white">
-                        Shop
+                    <Link href="/404Error" className="hover:text-yellow-500 text-white">
+                        Pages
+                    </Link>
+                    
+                    <Link href="/OurChefs" className="hover:text-yellow-500 text-white">
+                        Chefs
                     </Link>
                     <Link href="/contact" className="hover:text-yellow-500 text-white">
                         Contact
@@ -91,6 +94,7 @@ const Navbar: React.FC = () => {
                     Contact
                 </Link>
             </div>
+            
         </nav>
     );
 };
