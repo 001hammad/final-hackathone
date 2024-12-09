@@ -13,7 +13,7 @@ const BlogPost = () => {
       <h4 className={`${VibeFont.className} text-white text-[32px] md:ml-[700px] md:my-[10px]`}>Blog Post</h4>
       <h4 className='font-bold  text-[48px] leading-[56px text-white ]'><span className='text-[#FF9F0D] md:ml-[550px] '>La</span>test News & Blog</h4>
     </div>
-    <div className='flex justify-center items-center gap-9 md:mt-[50px] text-white'>
+    <div className='flex flex-col md:flex-row justify-center items-center gap-9 md:mt-[50px] text-white'>
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-black border border-white">
   <Image src="/card1.png" alt="card1" width={424} height={569} className="w-full h-auto" />
   
