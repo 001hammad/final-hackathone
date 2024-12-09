@@ -44,6 +44,9 @@ const Navbar: React.FC = () => {
                     <Link href="/shop" className="hover:text-yellow-500 text-white">
                         Shop
                     </Link>
+                    <Link href="/loginpage" className="hover:text-yellow-500 text-white">
+                        SignUp
+                    </Link>
                     <Link href="/contact" className="hover:text-yellow-500 text-white">
                         Contact
                     </Link>

@@ -20,7 +20,6 @@ const Menu = () => {
             priority
           />
           <Navbar/>
-
           {/* Centered Text */}
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">Our Menu</h1>
