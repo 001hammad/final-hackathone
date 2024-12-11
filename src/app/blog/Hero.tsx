@@ -6,45 +6,57 @@ import Image from 'next/image';
 function Hero() {
   return (
     <div className='bg-white'>
-    <section className='w-full  bg-[url("/starbg.png")] bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
-      <div className='container mx-auto px-4'>
-        <div className='flex flex-col items-center'>
-          <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white font-bold text-center mb-4 sm:mb-6'>
-            Blog Details
-          </h1>
-          <div className='text-base sm:text-lg md:text-xl flex gap-2 text-center justify-center'>
-            <Link href="/" className='text-white hover:text-[#FF9F0D] transition-colors duration-300'>
-              Home
-            </Link>
-            <span className='text-white'>/</span>
-            <Link href="/blog" className='text-[#FF9F0D]'>
-              Blog
-            </Link>
-          </div>
-        </div>
+   {/* Hero Section */}
+<section className='w-full bg-[url("/starbg.png")] bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
+  <div className='container mx-auto px-4'>
+    <div className='flex flex-col items-center'>
+      {/* Page Title */}
+      <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white font-bold text-center mb-4 sm:mb-6'>
+        Blog Details
+      </h1>
+      {/* Breadcrumb Navigation */}
+      <div className='text-base sm:text-lg md:text-xl flex gap-2 text-center justify-center'>
+        {/* Link to Home */}
+        <Link href="/" className='text-white hover:text-[#FF9F0D] transition-colors duration-300'>
+          Home
+        </Link>
+        {/* Divider */}
+        <span className='text-white'>/</span>
+        {/* Link to Blog */}
+        <Link href="/blog" className='text-[#FF9F0D]'>
+          Blog
+        </Link>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <section className='flex flex-col md:flex-row justify-center md: gap-[70px] md:m-[50px]'>
-      <div className='flex-col'>
-    <BlogCard imageSrc='/blogpic1.png'/>
-    <BlogCard imageSrc='/blogpic2.png'/>
-    <BlogCard imageSrc='/blogpic3.png'/>
-    <BlogCard imageSrc='/blogpic4.png'/>
-    </div>
+      {/* Blog Card Container */}
+<div className='flex-col'>
+  {/* Individual Blog Card with image source */}
+  <BlogCard imageSrc='/blogpic1.png' />
+  <BlogCard imageSrc='/blogpic2.png' />
+  <BlogCard imageSrc='/blogpic3.png' />
+  <BlogCard imageSrc='/blogpic4.png' />
+</div>
+
     <div className='flex-col'>
      <h6><input type="text" placeholder='Search Your Keyword' className='border border-r-[#FF9F0D] p-4 border-r-[60px] md:mb-[40px] border-gray-300 h-[70px] md:w-[425px] md:ml-0 ml-3 w-[350px]' /></h6>
      <div className="w-[424px] h-[423px] flex flex-col mb-[30px] items-center justify-center bg-white border border-gray-300 rounded-sm">
-  {/* Profile Picture */}
-  <div className="w-[147.7px] h-[129.43px] rounded-full overflow-hidden">
-    <Image 
-      src="/whiteman.png" 
-      alt="Profile Picture" 
-      width={148} 
-      height={130} 
-      className="object-cover rounded-full"
-    />
-  </div>
+ {/* Profile Picture Wrapper */}
+<div className="w-[147.7px] h-[129.43px] rounded-full overflow-hidden">
+  {/* Profile Picture Image */}
+  <Image 
+    src="/whiteman.png" 
+    alt="Profile Picture" 
+    width={148} 
+    height={130} 
+    className="object-cover rounded-full"
+  />
+</div>
+
 
   {/* Name and Review */}
   <div

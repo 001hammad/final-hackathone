@@ -88,6 +88,6 @@ export default function SignInPage() {
 
       {/* Footer */}
      <Footer />
-    </div>
-  );
+ </div>
+);
 }

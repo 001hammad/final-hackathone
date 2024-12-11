@@ -6,7 +6,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "rea
 const Footer = () => {
   return (
     <footer className="bg-black text-white  w-full">
-      {/* Top Section */}
+      {/* Top Section: Subscription form with email input and subscribe button */}
       <div className="flex md:mt-[600px] flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
         <div className="md:w-1/2 w-full">
           <h2 className="text-2xl md:text-4xl md:ml-[50px] font-semibold">
@@ -16,6 +16,7 @@ const Footer = () => {
             Don&#39;t wait make a smart & logical quote here. Its pretty easy.
           </p>
         </div>
+        {/* Email input and subscribe button */}
         <div className="flex mt-6 md:mt-0">
           <input
             type="text"
@@ -28,12 +29,13 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Divider */}
+      {/* Divider between sections */}
       <hr className="border-[#FF9F0D] mx-10 md:mx-[135px]" />
 
-      {/* Main Footer Content */}
+      {/* Main Footer Content: About Us, Useful Links, Help Section, Recent Posts */}
       <div className="max-w-screen-xl mx-auto py-8 md:py-12 px-6 md:px-[135px] grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
-        {/* About Us */}
+        
+        {/* About Us Section */}
         <div>
           <h2 className="mb-6 text-xl font-semibold ">About Us</h2>
           <p className="text-sm text-gray-300">
@@ -51,7 +53,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Useful Links */}
+        {/* Useful Links Section */}
         <div>
           <h2 className="mb-6 text-xl font-semibold ">Useful Links</h2>
           <ul className="space-y-4 text-gray-300">
@@ -79,7 +81,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Recent Posts */}
+        {/* Recent Posts Section */}
         <div>
           <h2 className="mb-6 text-xl font-semibold ">Recent Post</h2>
           <ul className="space-y-6">
@@ -96,10 +98,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer Bottom Section */}
+      {/* Footer Bottom Section: Copyright and Social Media Links */}
       <div className="bg-[#4F4F4F] py-6 px-4 md:flex md:justify-between md:items-center text-center md:text-left">
         <span className="text-sm text-gray-300">
-        Copyright © 2022 Ayeman. All Rights Reserved.
+          Copyright © 2022 Ayeman. All Rights Reserved.
         </span>
         <div className="flex justify-center md:justify-end gap-4 mt-4 md:mt-0">
           {[FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaPinterest].map((Icon, index) => (
@@ -113,4 +115,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;

@@ -1,7 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState } from 'react';
+import { Great_Vibes } from 'next/font/google';
 
+
+const VibeFont = Great_Vibes({subsets:['latin'],weight:['400']})
+
+// Testimonial data array
 const testimonials = [
   {
     id: 1,
@@ -30,34 +35,34 @@ const testimonials = [
 ]
 
 export default function SevenHero() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0) // State to track the current testimonial
 
   return (
     <section className="bg-black text-white py-16 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className="text-amber-500 text-3xl font-serif mb-2">Testimonials</h2>
-        <h3 className="text-4xl font-bold mb-12">What our clients are saying</h3>
+        <h2 className={`${VibeFont.className} text-amber-500 text-3xl font-serif mb-2`}>Testimonials</h2> {/* Section header */}
+        <h3 className="text-4xl font-bold mb-12">What our clients are saying</h3> {/* Section subtitle */}
         
         <div className="bg-white text-black p-8 rounded-lg relative">
-          {/* Centered Image */}
+          {/* Testimonial Image */}
           <div className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 z-10">
             <Image
-              src="/profile.png"
+              src="/profile.png" // Profile picture (Placeholder)
               alt="profile"
               width={80}
               height={80}
               className="rounded-full border-4 border-white"
             />
           </div>
-          <div className="text-6xl text-amber-500 mb-4">&quot;</div>
-          <p className="text-gray-600 mb-6">{testimonials[currentTestimonial].quote}</p>
+          <div className="text-6xl text-amber-500 mb-4">&quot;</div> {/* Quote mark */}
+          <p className="text-gray-600 mb-6">{testimonials[currentTestimonial].quote}</p> {/* Testimonial quote */}
           
-          {/* Stars */}
+          {/* Rating Stars */}
           <div className="flex justify-center mb-4">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
-                className={`w-6 h-6 ${i < testimonials[currentTestimonial].rating ? 'text-amber-500' : 'text-gray-300'}`}
+                className={`w-6 h-6 ${i < testimonials[currentTestimonial].rating ? 'text-amber-500' : 'text-gray-300'}`} // Star color based on rating
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -67,23 +72,23 @@ export default function SevenHero() {
           </div>
           
           {/* Testimonial Name and Role */}
-          <h4 className="font-bold text-xl text-center mt-4">{testimonials[currentTestimonial].name}</h4>
-          <p className="text-gray-500 text-center">{testimonials[currentTestimonial].role}</p>
+          <h4 className="font-bold text-xl text-center mt-4">{testimonials[currentTestimonial].name}</h4> {/* Client's name */}
+          <p className="text-gray-500 text-center">{testimonials[currentTestimonial].role}</p> {/* Client's role */}
         </div>
 
-        {/* Dots for navigation */}
+        {/* Dots for navigation to switch between testimonials */}
         <div className="flex justify-center mt-6">
           {[...Array(3)].map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full mx-1 ${index === currentTestimonial ? 'bg-amber-500' : 'bg-gray-400'}`}
-              onClick={() => setCurrentTestimonial(index)}
+              className={`w-3 h-3 rounded-full mx-1 ${index === currentTestimonial ? 'bg-amber-500' : 'bg-gray-400'}`} // Highlight the current dot
+              onClick={() => setCurrentTestimonial(index)} // Change the current testimonial
             />
           ))}
         </div>
       </div>
 
-      {/* Decorative elements */}
+      {/* Decorative circles */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-amber-500 opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-48 h-48 bg-amber-500 opacity-10 rounded-full translate-x-1/3 translate-y-1/3" />
     </section>
