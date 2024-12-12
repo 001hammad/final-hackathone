@@ -31,13 +31,14 @@ const Navbar: React.FC = () => {
                 <div className="flex items-center space-x-4">
                     {/* Desktop navigation links */}
                     <Link href="/" className="hover:text-yellow-500 cursor-pointer text-white">Home</Link>
+                    <Link href="/Menupage" className="hover:text-yellow-500 text-white">Menu</Link>
                     <Link href="/blog" className="hover:text-yellow-500 text-white">Blog</Link>
                     <Link href="/about" className="hover:text-yellow-500 text-white">About</Link>
                     <Link href="/loginpage" className="hover:text-yellow-500 text-white">SignUp</Link>
-                    <Link href="/Menupage" className="hover:text-yellow-500 text-white">Menu</Link>
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
+                    <Link href="/OurShop" className="hover:text-yellow-500 text-white">Shop</Link>
                     <Link href="/OurChefs" className="hover:text-yellow-500 text-white">Chefs</Link>
-                    <Link href="/contact" className="hover:text-yellow-500 text-white">Contact</Link>
+                    {/* <Link href="/contact" className="hover:text-yellow-500 text-white">Contact</Link> */}
                 </div>
 
                 {/* Search and Cart for Desktop */}
