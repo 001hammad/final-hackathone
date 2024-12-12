@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const OurChefs = () => {
   // Array of image paths for the 12 chefs
@@ -40,6 +41,7 @@ const OurChefs = () => {
           </div>
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };

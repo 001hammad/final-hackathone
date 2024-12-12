@@ -62,13 +62,13 @@ function Hero() {
           </div>
 
           <section className="text-black bg-white">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {images.map((image, index) => (
                 <div key={index} className="text-center">
-                  <img
+                  <Image
                     src={image}
-                    alt={`Product Image ${index + 1}`}
-                    className="w-full h-[200px] object-cover"
+                    alt={`Product Image ${index + 1}`} height={200} width={400}
+                    className=" object-cover"
                   />
                   <p className="mt-4 text-black text-lg font-medium">Fresh Lime</p>
                   <div className="flex items-center justify-center mt-2 space-x-2">

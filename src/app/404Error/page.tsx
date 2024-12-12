@@ -17,7 +17,7 @@ export default function ErrorPage() {
               Oops! Looks like something went wrong
             </p>
             <p className="text-[18px] mb-4">
-              Page cannot be found! We'll have it figured out in no time.
+              Page cannot be found! We&apos;ll have it figured out in no time.
             </p>
             <p className="text-[18px] mb-6">
               Meanwhile, check out these fresh ideas:
