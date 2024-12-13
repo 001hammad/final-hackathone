@@ -22,7 +22,7 @@ const Categories = () => {
       </p>
 
       {/* Food Categories Images */}
-      <div className="flex ml-[35px] flex-col md:flex-row text-white gap-[30px] md:ml-[100px] ">
+      <div className="grid ml-[35px] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-white gap-[30px] md:ml-[100px] ">
         {/* Category 1 Image with "Save 30%" Label */}
         <div className="relative">
           <Image src="/categ1.png" width={305} height={328} alt="categ1" />
@@ -66,11 +66,27 @@ const Categories = () => {
 
         {/* Why Choose Us Text */}
         <div className="flex flex-col md:mt-[70px]">
-          <p className={`${VibeFont.className} text-[#FF9F0D] md:w-[175px] md:ml-0 ml-[100px] md:mt-0 mt-[70px] text-[30px] md:h-[40px] font-normal md:text-[32px] leading-[40px]`}>Why Choose us</p>
-          <h2 className="font-bold text-[20px] md:ml-0 ml-[70px] md:text-[48px] leading-[56px] md:w-[433px] md:h-[112px]"><span>Ex</span>ta ordinary taste And Experienced</h2>
-          <p className={`${InterFont.className} font-normal text-[12px] md:text-[16px] leading-[24px] text-[#FFFFFF] md:w-[526px] w-[300px] md:ml-0 ml-[40px] md:h-[120px]`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
-          </p>
+        <p
+  className={`${VibeFont.className} text-[#FF9F0D] text-center md:text-left text-[24px] md:text-[32px] font-normal leading-[30px] md:leading-[40px] mt-[40px] md:mt-0`}
+>
+  Why Choose us
+</p>
+
+<h2
+  className="font-bold text-center md:text-left text-[24px] md:text-[48px] leading-[32px] md:leading-[56px] mt-4 md:mt-2 text-[#FFFFFF] max-w-[500px] mx-auto md:mx-0"
+>
+  <span>Ex</span>traordinary taste And Experienced
+</h2>
+
+<p
+  className={`${InterFont.className} font-normal ml-[30px] text-[14px] md:text-[16px] leading-[20px] md:leading-[24px] text-[#FFFFFF] max-w-[500px] md:max-w-[526px] mt-4 mx-auto md:mx-0`}
+>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam
+  pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue
+  urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus
+  risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
+</p>
+
 
           {/* Icons with Titles */}
           <div className="flex my-[20px] md:gap-0 gap-[45px] md:ml-0 ml-[10px] md:mx-0 mx-[10px] md:my-[40px] md:bg-none bg-[#FF9F0D] md:p-0 p-[10px]">

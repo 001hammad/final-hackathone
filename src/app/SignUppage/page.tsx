@@ -15,7 +15,7 @@ export default function SignInPage() {
         <section className="py-16">
           <div className="container mx-auto max-w-md bg-white shadow-lg rounded-md p-8">
             {/* Sign-in Title */}
-            <h3 className="text-2xl font-bold mb-6 text-center">Sign In</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center">Sign Up</h3>
             <form>
               {/* Name Input Field */}
               <div className="mb-4">
@@ -54,7 +54,7 @@ export default function SignInPage() {
                 type="submit"
                 className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 rounded"
               >
-                Sign In
+                Sign Up
               </button>
               {/* Forgot Password Link */}
               <p className="text-center mt-4">

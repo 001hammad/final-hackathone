@@ -9,7 +9,7 @@ import Hero from './Hero';
 const VibeFont = Great_Vibes({ subsets: ['latin'], weight: ['400'] });
 const InterFont = Inter({ subsets: ['latin'] });
 
-const Header = () => {
+const Hero1 = () => {
   return (
     <div>
       {/* Header Section */}
@@ -40,7 +40,7 @@ const Header = () => {
           </div>
 
           {/* Content Section */}
-          <div className='flex flex-col md:gap-[180px] md:flex-row'>
+          <div className='flex flex-col lg:gap-[180px] lg:flex-row'>
             
             {/* Text Content */}
             <div className='md:mt-[160px] flex flex-col md:w-[472px] md:h-[356px]'>
@@ -73,4 +73,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Hero1

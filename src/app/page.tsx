@@ -1,7 +1,6 @@
 import React from 'react';
 // import LandingPage from './Components/Header' // Uncomment if LandingPage is needed
 import Categories from './Components/Categories';
-import Header from './Components/Header';
 import Navbar from './Components/Navbar';
 import FromMenu from './Components/FromMenu';
 import Footer from './Components/Footer';
@@ -10,6 +9,7 @@ import ChefGrid from './Components/chefGrid';
 import Labelpic from './Components/labelpic';
 import SevenHero from './Components/Testimonial';
 import BlogPost from './Components/BlogPost';
+import Hero1 from './Components/Hero1';
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
       <Navbar/>
       
       {/* Header component for the top section of the page */}
-      <Header/>
+      <Hero1/>
       
       {/* Categories component to display various categories */}
       <Categories/>

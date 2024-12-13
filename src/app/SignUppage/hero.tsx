@@ -20,7 +20,7 @@ function Hero() {
               </Link>
               <span className='text-white'>/</span>
               <Link href="/SigninPage" className='text-[#FF9F0D]'>
-                Sign In
+                Sign Up
               </Link>
             </div>
           </div>

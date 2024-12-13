@@ -92,9 +92,9 @@ function Hero() {
               </svg>
 
               <div className="flex items-center space-x-2">
-                <span className="text-black text-lg">1</span>
-                <span className="text-white bg-[#FF9F0D] text-lg px-2 py-1 rounded">2</span>
-                <span className="text-black text-lg">3</span>
+                <span className="text-black hover:bg-[#FF9F0D] rounded px-4 text-lg">1</span>
+                <span className="text-white bg-[#FF9F0D] text-lg px-4 py-1 rounded">2</span>
+                <span className="text-black px-4 hover:bg-[#FF9F0D] rounded text-lg">3</span>
               </div>
 
               <svg
