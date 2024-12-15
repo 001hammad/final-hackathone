@@ -34,8 +34,8 @@ function Hero() {
                 Home
               </Link>
               <span className='text-white'>/</span>
-              <Link href="/SigninPage" className='text-[#FF9F0D]'>
-                Sign In
+              <Link href="/ShopDetails" className='text-[#FF9F0D]'>
+                Shop Details
               </Link>
             </div>
           </div>
