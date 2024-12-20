@@ -1,10 +1,8 @@
 import React from 'react'
 import { Great_Vibes } from 'next/font/google';
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 
 // Load custom fonts
-const InterFont = Inter({ subsets: ['latin'] });
 const VibeFont = Great_Vibes({ subsets: ['latin'], weight: ['400'] })
 
 const FromMenu = () => {
