@@ -1,15 +1,12 @@
 import React from 'react'; 
 import Image from 'next/image'; 
-import Footer from '../Components/Footer'; 
 import { IoChevronForwardOutline } from "react-icons/io5"; 
-import Navbar from '../Components/Navbar';
 
 const Menu = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col items-center">
       {/* Header Section */}
       <header className="relative bg-black w-full">
-        <Navbar />
         {/* Background Image */}
         <div className="h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center relative">
           <Image
@@ -265,7 +262,6 @@ const Menu = () => {
           className="rounded-lg shadow-lg"
         />
       </section>
-      <Footer />
     </div>
   );
 };

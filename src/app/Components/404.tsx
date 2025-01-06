@@ -1,7 +1,7 @@
 import React from 'react'; // Import React
 import Link from 'next/link'; // Import Link from Next.js for navigation
 
-function Hero() {
+function Hero404() {
   return (
     <section className='w-full bg-[url("/starbg.png")] bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
       
@@ -30,4 +30,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default Hero404;

@@ -3,8 +3,7 @@ import Link from "next/link"; // Importing Link from Next.js for navigation
 import { FcGoogle } from "react-icons/fc"; // Import Google icon
 import { ImAppleinc } from "react-icons/im"; // Import Apple icon
 // import { Input } from "@/components/ui/input"; // Unused Input component
-import Hero from "./hero"; // Import Hero component
-import Footer from "../Components/Footer"; // Import Footer component
+import Hero from "../Components/SignUpHero"; // Import Hero component
 
 export default function SignInPage() {
   return (
@@ -77,7 +76,7 @@ export default function SignInPage() {
           </div>
         </section>
         {/* Footer Component */}
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </>
   );

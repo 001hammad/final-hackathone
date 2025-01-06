@@ -1,11 +1,10 @@
 import Link from "next/link"; // Import Link for navigation
-import Hero from "./Hero"; // Import Hero section
-import Footer from "../Components/Footer"; // Import Footer component
+import Hero404 from "../Components/404";
 
 export default function ErrorPage() {
   return (
     <>
-      <Hero /> {/* Render Hero section */}
+      <Hero404 /> {/* Render Hero section */}
       <div className="min-h-screen bg-white">
         
         {/* Signup Form Section */}
@@ -30,7 +29,6 @@ export default function ErrorPage() {
             </Link>
           </div>
         </section>
-        <Footer/> {/* Render Footer component */}
       </div>
     </>
   );

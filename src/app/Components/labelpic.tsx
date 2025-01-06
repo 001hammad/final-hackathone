@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Labelpic = () => {
   return (
-    <div className="relative w-full md:mt-[200px]">
+    <div className="relative w-full">
       {/* Restaurant Image */}
       <Image
         src="/restu-pic.png" // Ensure the image is in the public folder

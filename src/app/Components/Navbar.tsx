@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
                     {/* Desktop navigation links */}
                     <Link href="/" className="hover:text-yellow-500 cursor-pointer text-white">Home</Link>
                     <Link href="/Menupage" className="hover:text-yellow-500 text-white">Menu</Link>
-                    <Link href="/blog" className="hover:text-yellow-500 text-white">Blog</Link>
+                    <Link href="/blogs" className="hover:text-yellow-500 text-white">Blog</Link>
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
                     <Link href="/about" className="hover:text-yellow-500 text-white">About</Link>
                     <Link href="/SignUppage" className="hover:text-yellow-500 text-white">SignUp</Link>

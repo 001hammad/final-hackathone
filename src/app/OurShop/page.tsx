@@ -1,14 +1,10 @@
 import React from 'react'
-import Hero from './Hero'
-import Navbar from '../Components/Navbar'
-import Footer from '../Components/Footer'
+import Hero from '../Components/ShopHero'
 
 const OurShop = () => {
   return (
     <div className='bg-white'>
-        <Navbar/>
         <Hero/>
-        <Footer/>
     </div>
   )
 }

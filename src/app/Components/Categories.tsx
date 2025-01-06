@@ -18,7 +18,7 @@ const Categories = () => {
 
       {/* Choose Food Item Title */}
       <p className="md:w-[446px] md:h-[56px] font-bold md:text-[48px] text-[30px] ml-[50px] md:mb-[40px]  md:mx-auto leading-[56px] text-[#FFFFFF] md:my-0 my-[30px]">
-        <span className="text-[#FF9F0D]">Ch</span>oose Food Iteam
+        <span className="text-[#FF9F0D]">Ch</span>oose Food Item
       </p>
 
       {/* Food Categories Images */}
@@ -65,25 +65,6 @@ const Categories = () => {
             </div>
           </div>
         </div>
-
-{/* HIDDEN SECTION  */}
-
-        {/* <div>
-          <div className="flex md:mr-[100px] flex-col gap-3">
-            <div className="flex flex-col md:flex-row gap-1">
-              <div><Image src='/paratha.png' alt="paratha" width={362} height={356} className="p-[20px]"/></div>
-              <div><Image src='/burger.png' alt="burger" width={281} height={231} className="md:mt-[120px]"/></div>
-            </div>
-            <div className="flex flex-col md:flex-row gap-3">
-              <div><Image src='/kabab.png' width={244} height={306} alt="burger" className="md:w-[224px] w-[210px] md:ml-0 ml-[110px]"/></div>
-              <div><Image src='/cheezburger.png' alt="burger2" width={221} height={226} className="md:w-[221px] w-[200px] md:ml-0 ml-[30px]"/></div>
-              <div className="flex flex-col gap-3">
-                <div><Image src='/raita.png' alt="raita-pic" width={161} height={168} className="md:ml-0 ml-[170px]"/></div>
-                <div><Image src='/lastpic.png' alt="raita-pic" width={161} height={168} className="md:ml-0 ml-[20px]"/></div>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
 
 
@@ -195,7 +176,7 @@ const Categories = () => {
       </div>
 
       {/* Footer with Professional Chefs Stats */}
-      <div className="text-white flex flex-col md:flex-row md:m-[80px] md:mt-[160px] items-center gap-8 md:gap-0">
+      <div className="text-white flex flex-col md:flex-row md:mx-auto md:mt-[160px] items-center gap-8 md:gap-0">
   {/* Grid Container for Items */}
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full justify-items-center">
     {/* Card 1 */}

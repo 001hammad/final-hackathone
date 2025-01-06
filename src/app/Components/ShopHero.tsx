@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image';
 
-function Hero() {
+function ShopHero() {
   const images = [
     "/h1 (1).png",
     "/h1 (2).png",
@@ -303,4 +303,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default ShopHero;

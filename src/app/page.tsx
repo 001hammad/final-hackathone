@@ -1,9 +1,7 @@
 import React from 'react';
 // import LandingPage from './Components/Header' // Uncomment if LandingPage is needed
 import Categories from './Components/Categories';
-import Navbar from './Components/Navbar';
 import FromMenu from './Components/FromMenu';
-import Footer from './Components/Footer';
 import Cheefs from './Components/Chefs';
 import ChefGrid from './Components/chefGrid';
 import Labelpic from './Components/labelpic';
@@ -15,7 +13,7 @@ const Home = () => {
   return (
     <div>
       {/* Navbar component to display navigation menu */}
-      <Navbar/>
+      {/* <Navbar/> */}
       
       {/* Header component for the top section of the page */}
       <Hero1/>
@@ -42,7 +40,7 @@ const Home = () => {
       <BlogPost/>
       
       {/* Footer component to display the footer of the page */}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

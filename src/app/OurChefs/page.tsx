@@ -1,7 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
 import Link from 'next/link';
 
 const OurChefs = () => {
@@ -16,7 +14,7 @@ const OurChefs = () => {
   return (
     <div className="min-h-screen bg-white  ">
       {/* Navbar Component */}
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className='bg-white'>
       
       {/* Hero Section: Background image with padding and text */}
@@ -65,7 +63,6 @@ const OurChefs = () => {
           </div>
         ))}
       </div>
-      <Footer/>
     </div>
   );
 };

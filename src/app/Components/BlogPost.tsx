@@ -8,9 +8,9 @@ const VibeFont = Great_Vibes({ subsets: ["latin"], weight: ["400"] });
 
 const BlogPost = () => {
   return (
-    <div>
+    <div className='bg-black min-h-screen'>
         <div>
-      <h4 className={`${VibeFont.className} text-white text-[32px] md:ml-[360px] ml-[120px] md:my-[10px] md:mt-[4-px] mt-[140px]`}>Blog Post</h4>
+      <h4 className={`${VibeFont.className} text-white text-[32px] md:ml-[360px] ml-[120px] `}>Blog Post</h4>
       <h4 className='font-bold  text-[30px] md:ml-0 ml-[40px] md:text-[48px] leading-[56px] text-white ] md:mb-0 mb-[40px]'><span className='text-[#FF9F0D] md:ml-[210px] '>La</span>test News & Blog</h4>
     </div>
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center items-center gap-9 md:mt-[50px] text-white md:p-0 p-10'>

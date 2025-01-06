@@ -7,7 +7,7 @@ const VibeFont = Great_Vibes({subsets:['latin'], weight:['400']})
 function Cheefs() {
   return (
     // Section for the chefs with background image and padding
-    <section className='w-full md:mt-[700px] bg-[url("/heropic.png")] bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
+    <section className='w-full  bg-[url("/heropic.png")] bg-black bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
       <div className='container mx-auto px-4'>
         {/* Container for the content, flex centered */}
         <div className='flex flex-col items-center'>

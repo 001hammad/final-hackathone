@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
-import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
 
 export default function SignInPage() {
   return (
@@ -14,8 +12,6 @@ export default function SignInPage() {
         // style={{ backgroundImage: "url('assets/header.svg')" }}
         >
     
-        {/* Navbar */}
-        <Navbar />
       
         {/* Centered Text */}
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
@@ -86,8 +82,6 @@ export default function SignInPage() {
         </div>
       </section>
 
-      {/* Footer */}
-     <Footer />
  </div>
 );
 }

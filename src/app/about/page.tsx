@@ -1,7 +1,6 @@
 import React from 'react'; // Import React
-import Hero from "./Hero"; // Import Hero component for the hero section
-import AboutUs from "./AboutUs"; // Import AboutUs component for the content section
-import Footer from '../Components/Footer'; // Import Footer component
+import Hero from '../Components/AboutHero' // Import Hero component for the hero section
+import Aboutus from '../Components/AboutUs'; // Import AboutUs component for the content section
 
 const About = () => {
   return (
@@ -10,10 +9,8 @@ const About = () => {
       <Hero />
       
       {/* About Us Section */}
-      <AboutUs />
+      <Aboutus/>
       
-      {/* Footer Section */}
-      <Footer/>
     </div>
   )
 }

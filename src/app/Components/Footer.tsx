@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white  w-full">
       {/* Top Section: Subscription form with email input and subscribe button */}
-      <div className="flex md:mt-[600px] flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
+      <div className="flex  flex-col md:flex-row justify-between items-center bg-black px-10 md:px-[135px] py-8 md:py-[50px]">
         <div className="md:w-1/2 w-full">
           <h2 className="text-2xl md:text-4xl md:ml-[50px] font-semibold">
             <span className="text-[#FF9F0D]">St</span>ill You Need Our Support?
