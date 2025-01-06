@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
                 <div className="flex flex-col mt-12 space-y-4 px-6">
                     <Link href="/" className="hover:text-yellow-500">Home</Link>
                     <Link href="/Menupage" className="hover:text-yellow-500">Menu</Link>
-                    <Link href="/blog" className="hover:text-yellow-500">Blog</Link>
+                    <Link href="/blogs" className="hover:text-yellow-500">Blog</Link>
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
                     <Link href="/OurShop" className="hover:text-yellow-500">Shop</Link>
                     <Link href="/about" className="hover:text-yellow-500">About</Link>
