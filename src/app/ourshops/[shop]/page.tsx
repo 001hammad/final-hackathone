@@ -1,7 +1,10 @@
-// app/ourshop/[shop]/page.tsx
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import Hero from '@/app/Components/AboutHero';
+"use client";
+
+import { useCart } from "../../Components/CartContext";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { useState } from "react";
+import Hero from "@/app/Components/AboutHero";
 
 const products = [
   { 
@@ -58,7 +61,6 @@ const products = [
     largeImage: '/n5.jpg',
     status: 'In stock'
   },
-  
   { 
     id: '7', 
     name: 'Chicken Chup', 
@@ -89,99 +91,140 @@ const products = [
 ];
 
 const ProductDetailPage = ({ params }: { params: { shop: string } }) => {
-  const { shop } = params;
-  const product = products.find((product) => product.id === shop);
-
-  if (!product) {
-    notFound();
-  }
-
-  return (
-    <div className="bg-white">
-       <Hero title='Shop Details' homeLink='/' currentPage='Shop Details' backgroundImage='/starbg.png'  />
-        
-      <div className="max-w-[1320px] mx-auto mt-[130px] flex flex-col md:flex-row gap-6 px-4">
-        {/* Thumbnail images */}
-        <div className="flex flex-wrap gap-4 md:w-[200px] w-full justify-center md:justify-start">
-          {product.images.map((img, index) => (
+    const { shop } = params;
+    const { addToCart, cart } = useCart(); // Fetch cart from context
+    const product = products.find((product) => product.id === shop);
+  
+    if (!product) {
+      notFound();
+    }
+  
+    const [quantity, setQuantity] = useState(1); // State to handle quantity
+    const [message, setMessage] = useState(''); // State to handle the success message visibility
+  
+    // Cart item count
+    const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+  
+    const handleAddToCart = () => {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity,
+      });
+      setMessage('Item added to cart successfully!');
+      setTimeout(() => setMessage(''), 3000);
+    };
+  
+    const increaseQuantity = () => {
+      setQuantity((prev) => prev + 1);
+    };
+  
+    const decreaseQuantity = () => {
+      if (quantity > 1) {
+        setQuantity((prev) => prev - 1);
+      }
+    };
+  
+    return (
+      <div className="bg-white">
+        <Hero title="Shop Details" homeLink="/" currentPage="Shop Details" backgroundImage="/starbg.png" />
+          
+        <div className="max-w-[1320px] mx-auto mt-[130px] flex flex-col md:flex-row gap-6 px-4">
+          {/* Thumbnail images */}
+          <div className="flex flex-wrap gap-4 md:w-[200px] w-full justify-center md:justify-start">
+            {product.images.map((img, index) => (
+              <Image
+                key={index}
+                src={img}
+                alt={`Image ${index + 1}`}
+                width={132}
+                height={129}
+                className="w-[132px] h-[129px] rounded-[6px] border-2 object-cover"
+              />
+            ))}
+          </div>
+  
+          {/* Large image */}
+          <div className="w-full md:w-[491px] flex justify-center md:justify-start">
             <Image
-              key={index}
-              src={img}
-              alt={`Image ${index + 1}`}
-              width={132}
-              height={129}
-              className="w-[132px] h-[129px] rounded-[6px] border-2 object-cover"
+              src={product.largeImage}
+              alt="Large Image"
+              width={491}
+              height={596}
+              className="rounded-[6px] w-full object-contain"
             />
-          ))}
-        </div>
-
-        {/* Large image */}
-        <div className="w-full md:w-[491px] flex justify-center md:justify-start">
-          <Image
-            src={product.largeImage}
-            alt="Large Image"
-            width={491}
-            height={596}
-            className="rounded-[6px] w-full object-contain"
-          />
-        </div>
-
-        {/* Product Details */}
-        <div className="flex-1 w-full">
-          <div className="flex items-center mb-4">
-            <span
-              className={`px-4 py-1 rounded-full text-white text-sm ${
-                product.status === 'In stock' ? 'bg-green-500' : 'bg-red-500'
-              }`}
-            >
-              {product.status}
-            </span>
           </div>
-
-          <h1 className="font-bold text-[24px] md:text-[32px] leading-[32px] md:leading-[56px] mb-4">
-            {product.name}
-          </h1>
-
-          <p className="text-[14px] md:text-[16px] leading-[22px] md:leading-[26px] mb-4">
-            {product.description}
-          </p>
-
-          <hr className="mb-4" />
-
-          <div className="flex items-center mb-4">
-            <span className="font-bold text-[20px] md:text-[24px] mr-4">
-              {product.price}
-            </span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
-            <div className="flex items-center gap-2">
-              <button
-                className="px-4 py-2 border rounded"
-               
+  
+          {/* Product Details */}
+          <div className="flex-1 w-full">
+            <div className="flex items-center mb-4">
+              <span
+                className={`px-4 py-1 rounded-full text-white text-sm ${
+                  product.status === 'In stock' ? 'bg-green-500' : 'bg-red-500'
+                }`}
               >
-                -
-              </button>
+                {product.status}
+              </span>
+            </div>
+  
+            <h1 className="font-bold text-[24px] md:text-[32px] leading-[32px] md:leading-[56px] mb-4">
+              {product.name}
+            </h1>
+  
+            <p className="text-[14px] md:text-[16px] leading-[22px] md:leading-[26px] mb-4">
+              {product.description}
+            </p>
+  
+            <hr className="mb-4" />
+  
+            <div className="flex items-center mb-4">
+              <span className="font-bold text-[20px] md:text-[24px] mr-4">
+                {product.price}
+              </span>
+            </div>
+  
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={decreaseQuantity}
+                  className="px-4 py-2 border rounded"
+                >
+                  -
+                </button>
+                <span className="text-lg">{quantity}</span> {/* Display quantity */}
+                <button
+                  onClick={increaseQuantity}
+                  className="px-4 py-2 border rounded"
+                >
+                  +
+                </button>
+              </div>
               <button
-                className="px-4 py-2 border rounded"
+                onClick={handleAddToCart}
+                className="bg-[#FF9F0D] text-white px-6 py-2 rounded w-full sm:w-auto hover:translate-x-1 duration-700 hover:bg-yellow-500"
               >
-                +
+                Add to Cart
               </button>
             </div>
-            <button
-              className="bg-[#FF9F0D] text-white px-6 py-2 rounded w-full sm:w-auto"
-            >
-              Add to Cart
-            </button>
+  
+            {/* Success message */}
+            {message && (
+              <div className="text-green-500 font-bold mt-4">
+                {message}
+              </div>
+            )}
+  
+            <hr className="mb-4" />
           </div>
-
-          
-
-          <hr className="mb-4" />
+        </div>
+  
+        {/* Cart Icon with Item Count */}
+        <div className="fixed bottom-4 right-4 bg-[#FF9F0D] text-white rounded-full w-10 h-10 flex items-center justify-center">
+          <span>{cartItemCount}</span> {/* Show cart item count */}
         </div>
       </div>
-    </div>
-  );
-};
-
-export default ProductDetailPage;
+    );
+  };
+  
+  export default ProductDetailPage;
