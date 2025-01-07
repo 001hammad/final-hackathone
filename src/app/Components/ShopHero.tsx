@@ -1,306 +1,193 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-function ShopHero() {
-  const images = [
-    "/h1 (1).png",
-    "/h1 (2).png",
-    "/h1 (3).png",
-    "/h1 (4).png",
-    "/h1 (5).png",
-    "/h1 (6).png",
-    "/h1 (7).png",
-    "/h1 (8).png",
-    "/h1 (9).png",
-    "/h1 (10).png",
-    "/h1 (11).png",
-    "/h1 (12).png",
-    "/h1 (13).png",
-    "/h1 (14).png",
-    "/h1 (15).png",
+function ShopPage() {
+  const products = [
+    { id: 1, image: "/malaiboti.jpg", name: "Fresh Lime", price: 38, oldPrice: 45 },
+    { id: 2, image: "/muffin.jpg", name: "Chocolate Muffin", price: 42, oldPrice: 50 },
+    { id: 3, image: "/burger.jpg", name: "Burger", price: 35, oldPrice: 40 },
+    { id: 4, image: "/juices.jpg", name: "Drink", price: 55, oldPrice: 60 },
+    { id: 5, image: "/pizzas.jpg", name: "Cheesy Pizza", price: 48, oldPrice: 55 },
+    { id: 6, image: "/hotdog.jpg", name: "Hot Dog", price: 30, oldPrice: 35 },
+    { id: 7, image: "/chup.jpg", name: "Chicken Chup", price: 25, oldPrice: 30 },
+    { id: 8, image: "/muffin.jpg", name: "Chocolate Muffin", price: 40, oldPrice: 50 },
+    { id: 9, image: "/juices.jpg", name: "Drink", price: 38, oldPrice: 45 },
   ];
 
   return (
-    <div>
-      <section className='w-full bg-[url("/starbg.png")] bg-cover bg-no-repeat bg-center py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28'>
-        <div className='container mx-auto px-4'>
-          <div className='flex flex-col items-center'>
-            <h1 className='text-3xl sm:text-4xl  md:text-5xl lg:text-6xl leading-tight text-white font-bold text-center mb-4 sm:mb-6'>
-              Our Shop
-            </h1>
-            <div className='text-base sm:text-lg md:text-xl flex gap-2 text-center justify-center'>
-              <Link href="/" className='text-white hover:text-[#FF9F0D] transition-colors duration-300'>
-                Home
-              </Link>
-              <span className='text-white'>/</span>
-              <Link href="/ShopDetails" className='text-[#FF9F0D]'>
-                Shop Details
-              </Link>
-            </div>
+    <div className="container mx-auto px-4 flex flex-col md:flex-row gap-4">
+      {/* Left Section */}
+      <div className="w-full md:w-[70%] lg:w-[75%]">
+        {/* Sort and Show Controls */}
+        <div className="flex flex-wrap items-center justify-between mb-6">
+          <div className="flex items-center space-x-4">
+            <label htmlFor="sort" className="text-gray-700 font-medium">
+              Sort By:
+            </label>
+            <select
+              id="sort"
+              className="border border-gray-300 rounded-md p-2 text-gray-700"
+            >
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+            </select>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <label htmlFor="show" className="text-gray-700 font-medium">
+              Show:
+            </label>
+            <select
+              id="show"
+              className="border border-gray-300 rounded-md p-2 text-gray-700"
+            >
+              <option value="10">10 items per page</option>
+              <option value="15">15 items per page</option>
+              <option value="20">20 items per page</option>
+            </select>
           </div>
         </div>
-      </section>
 
-      <div className="container mx-auto px-4 flex flex-col md:flex-row  gap-4">
-        {/* Left Section for Sort By and Show Dropdown */}
-        <div className="w-full  md:w-[70%] lg:w-[75%]">
-          <div className="flex md:ml-0 ml-[40px] justify-between items-center mb-6 text-black">
-            <div className="flex flex-col md:flex-row items-center space-x-4">
-              <span className="text-lg font-medium">Sort By:</span>
-              <select className="w-[236px] h-[46px] bg-white border border-gray-300 text-black px-4 rounded-md">
-                <option>Newest</option>
-              </select>
-            </div>
-
-            <div className="  md:flex md:flex-row hidden items-center space-x-4">
-              <span className="text-lg font-medium">Show:</span>
-              <select className="w-[236px] h-[46px] bg-white border border-gray-300 text-black px-4 rounded-md">
-                <option>Default</option>
-              </select>
-            </div>
-          </div>
-
-          <section className="text-black bg-white">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {images.map((image, index) => (
-                <div key={index} className="text-center">
-                  <Image
-                    src={image}
-                    alt={`Product Image ${index + 1}`} height={200} width={400}
-                    className=" object-cover"
-                  />
-                  <p className="mt-4 text-black text-lg font-medium">Fresh Lime</p>
-                  <div className="flex items-center justify-center mt-2 space-x-2">
-                    <p className="text-[#FF9F0D] text-lg font-semibold">$38.00</p>
-                    <p className="text-gray-500 line-through">$45.00</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-center mt-8 space-x-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="#FF9F0D"
-                viewBox="0 0 24 24"
-                width="16px"
-                height="16px"
-                className="cursor-pointer"
-              >
-                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
-              </svg>
-
-              <div className="flex items-center space-x-2">
-                <span className="text-black hover:bg-[#FF9F0D] rounded px-4 text-lg">1</span>
-                <span className="text-white bg-[#FF9F0D] text-lg px-4 py-1 rounded">2</span>
-                <span className="text-black px-4 hover:bg-[#FF9F0D] rounded text-lg">3</span>
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <Link
+              key={product.id}
+              href={`/ourshops/${product.id}`}
+              className="block text-center"
+            >
+              <Image
+                src={product.image}
+                alt={product.name}
+                height={200}
+                width={400}
+                className="object-cover"
+              />
+              <p className="mt-4 text-black text-lg font-medium">{product.name}</p>
+              <div className="flex items-center justify-center mt-2 space-x-2">
+                <p className="text-[#FF9F0D] text-lg font-semibold">${product.price}.00</p>
+                <p className="text-gray-500 line-through">${product.oldPrice}.00</p>
               </div>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="#FF9F0D"
-                viewBox="0 0 24 24"
-                width="16px"
-                height="16px"
-                className="cursor-pointer"
-              >
-                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-              </svg>
-            </div>
-          </section>
+            </Link>
+          ))}
         </div>
 
-        {/* Right Section */}
-        <div className="w-full md:w-[30%] lg:w-[25%] bg-white p-6">
-          <div className="flex items-center space-x-2 mb-6">
-            <input
-              type="text"
-              placeholder="Search Product"
-              className="w-[248px] h-[46px] bg-[#FF9F0D1A] text-black px-4 rounded-md placeholder-gray-500"
-            />
-            <button className="bg-[#FF9F0D] md:w-[200px] p-2">
-              <span className="text-white">Q</span>
-            </button>
-          </div>
-
-          <h2 className="font-bold text-[20px] leading-[28px] mb-4">Category</h2>
-          <div className="space-y-2 mb-6">
-            <div className="flex items-center">
-              <input type="checkbox" id="sandwiches" className="mr-2" />
-              <label htmlFor="sandwiches">Sandwiches</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="burger" className="mr-2" />
-              <label htmlFor="burger">Burger</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="chicken" className="mr-2" />
-              <label htmlFor="chicken">Chicken Chup</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="drink" className="mr-2" />
-              <label htmlFor="drink">Drink</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="pizza" className="mr-2" />
-              <label htmlFor="pizza">Pizza</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="nonveg" className="mr-2" />
-              <label htmlFor="nonveg">Non Veg</label>
-            </div>
-            <div className="flex items-center">
-              <input type="checkbox" id="uncategorized" className="mr-2" />
-              <label htmlFor="uncategorized">Uncategorized</label>
-            </div>
-          </div>
-
-          <Image src="/h16.png" alt="Category" height={286} width={248} className="  mb-6" />
-
-          <div className="mb-6">
-            <h3 className="font-bold text-[20px] leading-[28px] mb-2">Filter By Price</h3>
-            <div className="border-t-2 border-[#FF9F0D] mb-2"></div>
-            <p className="text-sm">From $0 to $8000</p>
-            <button className="bg-[#FF9F0D] text-white px-4 py-2 mt-2 rounded-md">Filter</button>
-          </div>
-
-          <h3 className="font-bold text-[20px] leading-[28px] mb-4">Latest Products</h3>
-          <div className="space-y-4">
-            <div className="flex space-x-4">
-              <Image src="/h17.png" alt="Product" width={72} height={65}  />
-              <div>
-                <p className="text-lg font-medium">Pizza</p>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                </div>
-                <p className="text-[#FF9F0D]">$45</p>
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <Image src="/h17.png" alt="Product" width={72} height={65}  />
-              <div>
-                <p className="text-lg font-medium">Pizza</p>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                </div>
-                <p className="text-[#FF9F0D]">$45</p>
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <Image src="/h17.png" alt="Product" width={72} height={65}  />
-              <div>
-                <p className="text-lg font-medium">Pizza</p>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                </div>
-                <p className="text-[#FF9F0D]">$45</p>
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <Image src="/h17.png" alt="Product" width={72} height={65}  />
-              <div>
-                <p className="text-lg font-medium">Pizza</p>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                </div>
-                <p className="text-[#FF9F0D]">$45</p>
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <Image src="/h17.png" alt="Product" width={72} height={65}  />
-              <div>
-                <p className="text-lg font-medium">Pizza</p>
-                <div className="flex items-center space-x-1">
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                  <svg className="w-[9.84px] h-[9px]" fill="#FF9F0D" viewBox="0 0 24 24">
-                    <path d="M12 17.27l-6.18 3.41 1.64-7.03-5.52-4.78 7.19-.61L12 2l2.87 7.27 7.19 .61-5.52 4.78 1.64 7.03L12 17.27z" />
-                  </svg>
-                </div>
-                <p className="text-[#FF9F0D]">$45</p>
-              </div>
-            </div>
-            <section className="bg-gray-100 py-12">
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl sm:text-4xl font-bold text-center text-black mb-8">
-      Popular Tags
-    </h2>
-    <div className="flex flex-wrap justify-center gap-4">
-      {/* Tag 1 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Sandwiches
-      </span>
-      {/* Tag 2 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Burgers
-      </span>
-      {/* Tag 3 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Chicken
-      </span>
-      {/* Tag 4 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Pizza
-      </span>
-      {/* Tag 5 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Drinks
-      </span>
-      {/* Tag 6 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Non Veg
-      </span>
-      {/* Tag 7 */}
-      <span className="bg-[#FF9F0D] text-white px-6 py-2 text-lg font-semibold hover:bg-[#e68906] transition duration-300 cursor-pointer">
-        Snacks
-      </span>
-    </div>
-  </div>
-</section>
-
-            {/* More Products can go here */}
-          </div>
+        {/* Pagination Buttons */}
+        <div className="flex justify-center items-center mt-8 space-x-4">
+          <button className="border border-gray-300 text-gray-500 rounded-md px-4 py-2">
+            &lt;&lt;
+          </button>
+          <button className="border border-gray-300 text-gray-500 rounded-md px-4 py-2">
+            1
+          </button>
+          <button className="bg-[#FF9F0D] text-white rounded-md px-4 py-2">
+            2
+          </button>
+          <button className="border border-gray-300 text-gray-500 rounded-md px-4 py-2">
+            3
+          </button>
+          <button className="border border-gray-300 text-gray-500 rounded-md px-4 py-2">
+            &gt;&gt;
+          </button>
         </div>
       </div>
+
+      {/* Right Section */}
+      <div className="w-full md:w-[30%] lg:w-[25%]">
+      {/* Search Product */}
+      <div className="flex items-center mb-6">
+        <input
+          type="text"
+          placeholder="Search Product"
+          className="border border-gray-300 rounded-l-md p-2 text-gray-700 w-full"
+        />
+        <button
+          className="bg-[#FF9F0D] text-white p-2 rounded-r-md"
+          aria-label="Search"
+        >
+          Q
+        </button>
+      </div>
+
+      {/* Category Section */}
+      <div className="mb-6">
+        <h3 className="text-xl font-bold text-gray-700 mb-4">Category</h3>
+        <div className="space-y-4">
+          {["Lime", "Orange", "Mango", "Burger", "Pizza", "Cake", "Wrap", "Sandwich"].map((category) => (
+            <div key={category} className="flex items-center space-x-2">
+              <input type="checkbox" id={category} />
+              <label htmlFor={category} className="text-gray-700">{category}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Promotion Image Section */}
+      <div className="mb-6">
+        <Image
+          src="/h16.png" // Replace with the actual image path
+          alt="Promotion Image"
+          width={248}
+          height={286}
+          className="object-cover rounded-md"
+        />
+      </div>
+
+      {/* Filter By Price */}
+      <div className="mb-6">
+        <h3 className="text-xl font-bold text-gray-700 mb-2">Filter By Price</h3>
+        <div className="w-full border-b border-[#FF9F0D] mb-2"></div>
+        <p className="text-gray-700 mb-4">From $0 to $8000</p>
+      </div>
+
+      {/* Latest Products */}
+      <div className="mb-6">
+        <h3 className="text-xl font-bold text-gray-700 mb-4">Latest Products</h3>
+        <div className="space-y-4">
+          {[
+            { name: "Product 1", price: 34, image: "/h17.png" },
+            { name: "Product 2", price: 40, image: "/h17.png" },
+            { name: "Product 3", price: 28, image: "/h17.png" },
+            { name: "Product 4", price: 60, image: "/h17.png" },
+          ].map((product) => (
+            <div key={product.name} className="flex items-center space-x-4">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={71.81}
+                height={65}
+                className="object-cover"
+              />
+              <div className="flex flex-col">
+                <p className="text-sm text-gray-700">{product.name}</p>
+                <div className="flex items-center">
+                  <span className="text-yellow-500">⭐⭐⭐⭐</span>
+                </div>
+                <p className="text-sm text-[#FF9F0D]">${product.price}.00</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Product Tags */}
+      <div className="mb-6">
+        <h3 className="text-xl font-bold text-gray-700 mb-4">Product Tags</h3>
+        <div className="flex flex-wrap gap-2">
+          {["Food", "Burger", "Pizza", "Cake", "Drink", "Sandwich", "Healthy", "Fresh"].map((tag) => (
+            <span key={tag} className="bg-[#FF9F0D] text-white px-4 py-1 rounded-md text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
     </div>
   );
 }
 
-export default ShopHero;
+export default ShopPage;

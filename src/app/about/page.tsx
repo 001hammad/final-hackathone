@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div>
       {/* Hero Section */}
-      <Hero />
+      <Hero title='About Us' homeLink='/' currentPage='About' backgroundImage='/starbg.png' />
       
       {/* About Us Section */}
       <Aboutus/>

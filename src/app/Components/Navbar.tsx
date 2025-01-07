@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
                     <Link href="/about" className="hover:text-yellow-500 text-white">About</Link>
                     <Link href="/SignUppage" className="hover:text-yellow-500 text-white">SignUp</Link>
-                    <Link href="/OurShop" className="hover:text-yellow-500 text-white">Shop</Link>
+                    <Link href="/ourshops" className="hover:text-yellow-500 text-white">Shop</Link>
                     <Link href="/OurChefs" className="hover:text-yellow-500 text-white">Chefs</Link>
                 </div>
 
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                     <Link href="/Menupage" className="hover:text-yellow-500">Menu</Link>
                     <Link href="/blogs" className="hover:text-yellow-500">Blog</Link>
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
-                    <Link href="/OurShop" className="hover:text-yellow-500">Shop</Link>
+                    <Link href="/ourshops" className="hover:text-yellow-500">Shop</Link>
                     <Link href="/about" className="hover:text-yellow-500">About</Link>
                     <Link href="/SignUppage" className="hover:text-yellow-500">SignUp</Link>
                     <Link href="/OurChefs" className="hover:text-yellow-500">Chefs</Link>

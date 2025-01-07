@@ -13,8 +13,6 @@ const OurChefs = () => {
 
   return (
     <div className="min-h-screen bg-white  ">
-      {/* Navbar Component */}
-      {/* <Navbar/> */}
       <div className='bg-white'>
       
       {/* Hero Section: Background image with padding and text */}

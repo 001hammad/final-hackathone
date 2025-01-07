@@ -5,6 +5,7 @@ import Comment3 from '@/app/Components/comment3';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { blogPosts } from '@/app/utils';
+import Hero from '@/app/Components/AboutHero';
 
 
 
@@ -17,7 +18,11 @@ const BlogDetailPage = () => {
   }
 
   return (
+    <div>
+       <Hero title='Blog Details' homeLink='/' currentPage='Blog Details' backgroundImage='/starbg.png'  />
+
     <div className="px-4 lg:px-20 py-10">
+     
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Blog Content */}
         <div className="flex-1">
@@ -121,6 +126,7 @@ const BlogDetailPage = () => {
       <div className="mt-10">
         <Comment3 />
       </div>
+    </div>
     </div>
   );
 };
