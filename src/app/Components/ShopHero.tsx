@@ -57,7 +57,7 @@ function ShopPage() {
             <Link
               key={product.id}
               href={`/ourshops/${product.id}`}
-              className="block text-center"
+              className="block text-center hover:-translate-y-5 duration-700"
             >
               <Image
                 src={product.image}
