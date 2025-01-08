@@ -7,11 +7,16 @@ type CartItem = {
   name: string;
   price: string;
   quantity: number;
+  rating:number;
+  image: string; // Array of image URLs
+  largeImage: string; // Main large image URL
+  status: string; // In stock or out of stock
 };
 
 type CartContextType = {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
+  removeItem: (id: string) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -21,23 +26,30 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
-      // Check if item already exists in cart
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {
-        // Update quantity if exists
         return prevCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
       }
-      // Add new item if not exists
       return [...prevCart, item];
     });
   };
 
+  const removeItem = (id: string) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.filter((item) => item.id !== id);
+      if (updatedCart.length === prevCart.length) {
+        console.warn(`Item with ID ${id} not found in cart.`);
+      }
+      return updatedCart;
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeItem }}>
       {children}
     </CartContext.Provider>
   );

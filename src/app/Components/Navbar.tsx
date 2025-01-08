@@ -36,7 +36,6 @@ const Navbar: React.FC = () => {
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
                     <Link href="/about" className="hover:text-yellow-500 text-white">About</Link>
                     <Link href="/SignUppage" className="hover:text-yellow-500 text-white">SignUp</Link>
-                    <Link href="/cart" className="hover:text-yellow-500 text-white">Cart</Link>
                     <Link href="/ourshops" className="hover:text-yellow-500 text-white">Shop</Link>
                     <Link href="/OurChefs" className="hover:text-yellow-500 text-white">Chefs</Link>
                 </div>
@@ -52,7 +51,7 @@ const Navbar: React.FC = () => {
                         />
                         <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-500" /> {/* Search icon */}
                     </div>
-                    <FaShoppingBag className="ml-4 text-white" /> {/* Shopping bag icon */}
+                  <Link href='/cart'><FaShoppingBag className="ml-4 text-2xl text-white" /></Link>   {/* Shopping bag icon */}
                 </div>
             </div>
 
@@ -73,6 +72,7 @@ const Navbar: React.FC = () => {
                     <Link href="/blogs" className="hover:text-yellow-500">Blog</Link>
                     <Link href="/404Error" className="hover:text-yellow-500 text-white">Pages</Link>
                     <Link href="/ourshops" className="hover:text-yellow-500">Shop</Link>
+                    <Link href="/cart" className="hover:text-yellow-500 text-white">Cart</Link>
                     <Link href="/about" className="hover:text-yellow-500">About</Link>
                     <Link href="/SignUppage" className="hover:text-yellow-500">SignUp</Link>
                     <Link href="/OurChefs" className="hover:text-yellow-500">Chefs</Link>
