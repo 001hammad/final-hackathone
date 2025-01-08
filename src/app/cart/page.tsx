@@ -6,7 +6,7 @@ import { useCart } from "../Components/CartContext";
 import CouponCodeSection from "../Components/Coupon";
 
 const CartPage = () => {
-  const { cart, removeItem } = useCart();
+  const { cart, removeItem, updateItemQuantity, calculateTotalPrice } = useCart();
 
   return (
     <div>
@@ -52,11 +52,26 @@ const CartPage = () => {
                     <p className="mt-2 text-gray-700">
                       Price: <span className="font-semibold">${item.price}</span>
                     </p>
-                    <p className="text-gray-700">
-                      Quantity: <span className="font-semibold">{item.quantity}</span>
-                    </p>
+
+                    {/* Quantity Section */}
+                    <div className="mt-2 flex items-center justify-center md:justify-start gap-2">
+                      <button 
+                        onClick={() => updateItemQuantity(item.id, Math.max(item.quantity - 1, 1))} 
+                        className="px-3 py-1 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded"
+                      >
+                        -
+                      </button>
+                      <span className="font-semibold">{item.quantity}</span>
+                      <button 
+                        onClick={() => updateItemQuantity(item.id, item.quantity + 1)} 
+                        className="px-3 py-1 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded"
+                      >
+                        +
+                      </button>
+                    </div>
+
                     <p className="text-gray-700 font-bold">
-                      Total: ${Number(item.price) && Number(item.quantity) ? (Number(item.price) * Number(item.quantity)).toFixed(2) : '0.00'}
+                      Total: ${(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
 
@@ -77,10 +92,7 @@ const CartPage = () => {
             <div className="mt-6 text-center md:text-right">
               <p className="text-xl font-bold">
                 Grand Total: $
-                {cart.reduce(
-                  (total, item) => total + (Number(item.price) * Number(item.quantity)),
-                  0
-                ).toFixed(2)}
+                {calculateTotalPrice().toFixed(2)}
               </p>
             </div>
           </>
