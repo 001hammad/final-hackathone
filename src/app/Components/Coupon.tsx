@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useCart } from '../Components/CartContext'; // Assuming you have the useCart hook to access cart data
+import { useCart } from './CartContext'; // Assuming you have the useCart hook to access cart data
+import { useRouter } from 'next/navigation'; // Importing useRouter from 'next/router'
 
 const CouponCodeSection = () => {
   const { cart } = useCart();
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
+
+  
+  // Only use useRouter hook on the client side
+  const router = useRouter();
 
   // Calculate cart subtotal
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -22,6 +27,22 @@ const CouponCodeSection = () => {
       setDiscount(10); // Apply $10 discount for the valid code
     } else {
       alert('Invalid Coupon Code');
+    }
+  };
+
+  // Handle proceed to checkout
+  const handleProceedToCheckout = () => {
+    // Ensure cart and discount are being passed properly
+    if (cart && cart.length > 0) {
+      const query = new URLSearchParams({
+        cart: JSON.stringify(cart),
+        discount: discount.toString(),
+      }).toString();
+  
+      const checkoutUrl = `/checkout?${query}`;
+      router.push(checkoutUrl);
+    } else {
+      alert('Cart is empty.');
     }
   };
 
@@ -76,6 +97,7 @@ const CouponCodeSection = () => {
 
           {/* Proceed to Checkout Button with Icon */}
           <button
+            onClick={handleProceedToCheckout}
             className="w-full mt-4 bg-[#FF9F0D] text-white px-6 py-3 rounded-md text-lg font-semibold flex items-center justify-center space-x-2"
           >
             <span>Proceed to Checkout</span>
