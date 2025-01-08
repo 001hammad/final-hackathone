@@ -26,7 +26,7 @@ const Hero1 = () => {
         </div>
         
         {/* Hero Section */}
-        <div className='flex  gap-[20px] md:mt-0 mt-[20px] lg:gap-[80px]'>
+        <div className='flex  gap-[20px] md:mt-0  lg:gap-[80px]'>
           
           {/* Social Media Icons Section */}
           <div className='flex flex-col md:ml-0 ml-9'>
