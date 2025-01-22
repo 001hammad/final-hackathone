@@ -7,7 +7,7 @@ import ChefGrid from './Components/chefGrid';
 import Labelpic from './Components/labelpic';
 import SevenHero from './Components/Testimonial';
 import BlogPost from './Components/BlogPost';
-import Hero1 from './Components/Hero1';
+import LandingHero from './Components/LandingHerosec';
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
       {/* <Navbar/> */}
       
       {/* Header component for the top section of the page */}
-      <Hero1/>
+      <LandingHero/>
       
       {/* Categories component to display various categories */}
       <Categories/>

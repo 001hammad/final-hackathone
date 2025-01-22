@@ -1,12 +1,13 @@
 import Link from "next/link"; // Import Link for navigation
-import Hero404 from "../Components/404";
+import HeroSection from "../Components/HeroSection"; // Reusable HeroSection component
 
 export default function ErrorPage() {
   return (
     <>
-      <Hero404 /> {/* Render Hero section */}
+      {/* Reusable HeroSection with dynamic props */}
+      <HeroSection title="404"  backgroundImage="/starbg.png" />
+
       <div className="min-h-screen bg-white">
-        
         {/* Signup Form Section */}
         <section className="p-10 relative bg-white pt-36 flex flex-col items-center">
           <div className="w-[630px] text-center">

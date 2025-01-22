@@ -7,7 +7,7 @@ import Image from "next/image";
 const InterFont = Inter({ subsets: ["latin"] });
 const VibeFont = Great_Vibes({ subsets: ["latin"], weight: ["400"] });
 
-const Hero = () => {
+const LandingAbout = () => {
   return (
     <div className="flex flex-wrap md:flex-nowrap gap-10 md:gap-[80px] bg-black p-5 md:h-[800px]">
       {/* First div - Text Content Section */}
@@ -92,4 +92,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default LandingAbout;

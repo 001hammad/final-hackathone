@@ -7,7 +7,7 @@ import DescriptionComponent from '../Components/ShopDescrip';
 import SimilarProducts from '../Components/SimilarProduct';
 import { categories } from '../utils';
 import { products } from '../utils';
-import Hero from '../Components/AboutHero';
+import HeroSection from '../Components/HeroSection';
 
 
 
@@ -15,7 +15,7 @@ import Hero from '../Components/AboutHero';
 const ProductListPage = () => {
   return (
     <div>
-      <Hero title='Our Blogs' homeLink='/' currentPage='Blog' backgroundImage='/starbg.png'  />
+      <HeroSection title='Our Blogs'currentPage='blog' homeLink='/' backgroundImage='/starbg.png'/>
    <div className='flex flex-col md:flex-row bg-white'>
    <div className='md:m-24'>
       <ul>

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Hero from "../Components/AboutHero";
 import { useCart } from "../Components/CartContext";
 import CouponCodeSection from "../Components/Coupon";
+import HeroSection from "../Components/HeroSection";
 
 const CartPage = () => {
   const { cart, removeItem, updateItemQuantity, calculateTotalPrice } = useCart();
@@ -11,10 +11,10 @@ const CartPage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <Hero 
+      <HeroSection 
         title="Shopping Cart" 
         homeLink="/" 
-        currentPage="Shopping cart" 
+        currentPage="Cart" 
         backgroundImage="/starbg.png" 
       />
 

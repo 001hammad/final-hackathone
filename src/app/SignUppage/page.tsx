@@ -3,12 +3,13 @@ import Link from "next/link"; // Importing Link from Next.js for navigation
 import { FcGoogle } from "react-icons/fc"; // Import Google icon
 import { ImAppleinc } from "react-icons/im"; // Import Apple icon
 // import { Input } from "@/components/ui/input"; // Unused Input component
-import Hero from "../Components/SignUpHero"; // Import Hero component
+import HeroSection from "../Components/HeroSection";
 
 export default function SignInPage() {
   return (
     <>
-      <Hero/> {/* Render the Hero component */}
+      {/* <Hero/>  */}
+      <HeroSection title="SignUp Page" homeLink="/" currentPage="signup" backgroundImage="/starbg.png"/>
       <div className="min-h-screen bg-white">
         {/* Signin Form Section */}
         <section className="py-16">

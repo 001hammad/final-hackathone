@@ -5,7 +5,7 @@ import Comment3 from '@/app/Components/comment3';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { blogPosts } from '@/app/utils';
-import Hero from '@/app/Components/AboutHero';
+import HeroSection from '@/app/Components/HeroSection';
 
 
 
@@ -19,7 +19,9 @@ const BlogDetailPage = () => {
 
   return (
     <div>
-       <Hero title='Blog Details' homeLink='/' currentPage='Blog Details' backgroundImage='/starbg.png'  />
+       {/* <Hero title='Blog Details' homeLink='/' currentPage='Blog Details' backgroundImage='/starbg.png'  /> */}
+
+       <HeroSection title='Blog Details' homeLink='/' backgroundImage='/starbg.png' currentPage='blog details'/>
 
     <div className="px-4 lg:px-20 py-10">
      
