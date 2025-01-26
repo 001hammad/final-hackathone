@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaSearch, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaRegUser  } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false); // State to toggle mobile menu
@@ -51,6 +51,7 @@ const Navbar: React.FC = () => {
                         />
                         <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-500" /> {/* Search icon */}
                     </div>
+                    <Link href="/SignUppage"><FaRegUser className="text-white ml-4 text-2xl"/></Link>
                   <Link href='/cart'><FaShoppingBag className="ml-4 text-2xl text-white" /></Link>   {/* Shopping bag icon */}
                 </div>
             </div>
