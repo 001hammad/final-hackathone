@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import HeroSection from "@/app/Components/HeroSection";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
+import { FaUtensils } from "react-icons/fa";
 
 interface ProductDetail {
   slug: string;
@@ -82,9 +83,10 @@ const ShopDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <p className="text-xl font-medium text-gray-700">Loading...</p>
-      </div>
+      <div className="loader-overlay">
+            <FaUtensils className="loader-icon" />
+            <div className="loader-text">Cooking Something Special...</div>
+          </div>
     );
   }
 

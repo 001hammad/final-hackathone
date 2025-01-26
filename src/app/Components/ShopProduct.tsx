@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client"; // Sanity client import
+import { FaUtensils } from "react-icons/fa";
 
 // Define types for the data being fetched
 interface Food {
@@ -71,9 +72,10 @@ const ShopProduct = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <p className="text-xl font-medium text-gray-700">Loading...</p>
-      </div>
+      <div className="loader-overlay">
+            <FaUtensils className="loader-icon" />
+            <div className="loader-text">Cooking Something Special...</div>
+          </div>
     );
   }
 

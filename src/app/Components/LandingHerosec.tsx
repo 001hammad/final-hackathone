@@ -43,7 +43,7 @@ const SocialMediaIcons = () => (
 
 const HeroImage = ({ src, alt, width, height }: { src: string, alt: string, width: number, height: number }) => (
   <div className='text-white h-[400px] sm:w-[500px] md:w-[460px] md:h-[160px] md:mt-[270px] lg:w-[600px] lg:mt-[280px] mt-[30px] md:mr-0 mr-[10px] flex justify-center items-center'>
-    <Image src={src} alt={alt} width={width} height={height} className='object-contain' />
+    <Image src={src} alt={alt} width={width} height={height} className='object-contain' priority={false}/>
   </div>
 );
 
@@ -79,7 +79,7 @@ const LandingHero = () => (
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..." 
             buttonText="See Menu" 
           />
-          <HeroImage src='/mypic.png' alt='Hero Image' width={624} height={624} />
+          <HeroImage src='/mypic.png' alt='Hero Image' width={624} height={624}  />
         </div>
       </div>
     </div>

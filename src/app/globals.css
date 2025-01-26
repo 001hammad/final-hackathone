@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 
+
+body {
+    cursor: url('/crsr.png'), auto;
+  }
+    
+  button:hover, a:hover {
+    cursor: url('/crsr.png'), pointer;
+  }
+
+
 * {
     box-sizing: border-box;
 }
@@ -14,3 +24,87 @@ html, body {
     /* background-color: black; */
     
 }
+
+
+/* globals.css ya apne custom stylesheet mein add karein */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+  }
+  
+  .loader-icon {
+    font-size: 60px; /* Icon size */
+    color: #ff6600; /* Orange color */
+    animation: rotateIcon 2s linear infinite;
+  }
+  
+  .loader-text {
+    margin-top: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    animation: fadeIn 2s ease-in-out infinite;
+  }
+  
+  /* Rotate icon animation */
+  @keyframes rotateIcon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Fade in/out animation for text */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+
+  /* Scrollbar ki width aur height */
+::-webkit-scrollbar {
+    width: 22px; /* Horizontal scrollbar ke liye height set karein */
+    height: 12px; /* Vertical scrollbar ke liye width set karein */
+  }
+  
+  /* Scrollbar ke track ka color */
+  ::-webkit-scrollbar-track {
+    background-color: #2d2d2d; /* Dark grey background for the track */
+    border-radius: 0px; /* Rounded corners */
+  }
+  
+  /* Scrollbar thumb (handle) ka color */
+  ::-webkit-scrollbar-thumb {
+    background-color: #ed9741; /* Orange color for the scrollbar handle */
+    border-radius: 5px; /* Rounded corners */
+    border: 3px solid #1a1a1a; /* Optional: border around thumb */
+  }
+  
+  /* Scrollbar thumb hover effect */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #ed8822; /* Darker orange on hover */
+  }
+  
+  /* Pointer Cursor for clickable items */
+.pointer-cursor {
+    cursor: pointer; /* Change to hand cursor */
+  }
+  
+  /* Move Cursor for drag-able items */
+  .move-cursor {
+    cursor: move; /* Shows move cursor */
+  }
+  
+  /* Crosshair Cursor */
+  .crosshair-cursor {
+    cursor: crosshair; /* A crosshair cursor */
+  }
+ 

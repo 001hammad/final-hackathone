@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import HeroSection from '../Components/HeroSection';
+import { client } from "@/sanity/lib/client"; // Import Sanity client
 import Image from 'next/image';
 
 // Define a TypeScript interface for chef data
@@ -16,50 +17,54 @@ interface Chef {
   imageUrl: string;
 }
 
-async function fetchChefs(): Promise<Chef[]> {
-  try {
-    const query = `*[_type == "chef"] {
-      _id,
-      name,
-      position,
-      specialty,
-      description,
-      experience,
-      available,
-      "imageUrl": image.asset->url,
-      _createdAt,
-      _updatedAt
-    }`;
-
-    const response = await fetch(
-      `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/production?query=${encodeURIComponent(query)}`
-    );
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-    return data.result; // Return the list of chefs
-  } catch (error) {
-    console.error('Error fetching chefs:', error);
-    return []; // Return an empty array in case of an error
-  }
-}
-
 const ChefsList: React.FC = () => {
   const [chefs, setChefs] = useState<Chef[]>([]); // Use proper type for chefs state
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchChefs().then((data) => {
-      setChefs(data);
-      setLoading(false);
-    });
-  }, []);
+    const fetchChefs = async () => {
+      try {
+        // Sanity query to fetch chefs data
+        const query = `*[_type == "chef"] {
+          _id,
+          name,
+          position,
+          specialty,
+          description,
+          experience,
+          available,
+          "imageUrl": image.asset->url
+        }`;
+
+        const data = await client.fetch(query); // Fetch data using Sanity client
+
+        if (data.length > 0) {
+          setChefs(data); // Set fetched data in chefs state
+        } else {
+          setError("No chefs found");
+        }
+      } catch (error) {
+        console.error('Error fetching chefs:', error);
+        setError("Failed to fetch chefs");
+      } finally {
+        setLoading(false); // Stop loading after data is fetched
+      }
+    };
+
+    fetchChefs(); // Call fetchChefs function
+  }, []); // Empty dependency array to run only once when component mounts
 
   if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <p className="text-xl font-medium text-red-600">Error: {error}</p>
+      </div>
+    );
   }
 
   return (
@@ -75,16 +80,15 @@ const ChefsList: React.FC = () => {
           <div key={chef._id} className="border p-4 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold">{chef.name}</h2>
             <div className="relative w-full h-48">
-              <Image
-                src={chef.imageUrl}
-                alt={chef.name}
-                width={400}
-                height={400}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-md"
-              />
-            </div>
+  <Image
+    src={chef.imageUrl}
+    alt={chef.name}
+    layout="fill"
+    objectFit="cover"
+    className="rounded-md"
+  />
+</div>
+
             <p className="font-medium text-gray-700">{chef.position}</p>
             <p className="text-sm text-gray-600">{chef.specialty}</p>
             <p className="text-sm text-gray-500">{chef.description}</p>
