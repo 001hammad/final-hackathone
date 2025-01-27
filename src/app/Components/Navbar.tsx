@@ -2,13 +2,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaRegUser } from "react-icons/fa";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
-import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle state
     const [userMenuOpen, setUserMenuOpen] = useState(false); // User dropdown state
-    const { isAuthenticated } = useKindeAuth(); // Kinde auth state
 
     // Function to toggle the mobile menu
     const toggleMenu = () => {
@@ -67,14 +64,14 @@ const Navbar: React.FC = () => {
                         </button>
                         {userMenuOpen && (
                             <div className="absolute right-0 mt-2 w-40 bg-black border border-yellow-500 rounded-md shadow-lg z-50">
-                                {isAuthenticated ? (
-                                    <LogoutLink className="block px-4 py-2 text-white hover:bg-yellow-500">Log Out</LogoutLink>
-                                ) : (
-                                    <>
-                                        <LoginLink className="block px-4 py-2 text-white hover:bg-yellow-500">Sign In</LoginLink>
-                                        <RegisterLink className="block px-4 py-2 text-white hover:bg-yellow-500">Sign Up</RegisterLink>
-                                    </>
-                                )}
+                            
+                                    <Link href={"/logout"} className="block px-4 py-2 text-white hover:bg-yellow-500">Log Out</Link>
+                                
+                                
+                                        <Link href={"/signin"} className="block px-4 py-2 text-white hover:bg-yellow-500">Sign In</Link>
+                                        <Link href={"/signup"} className="block px-4 py-2 text-white hover:bg-yellow-500">Sign Up</Link>
+                                    
+                            
                             </div>
                         )}
                     </div>
@@ -103,14 +100,13 @@ const Navbar: React.FC = () => {
 {/* User dropdown for both mobile and desktop */}
 {userMenuOpen && (
     <div className="absolute right-0 mt-2 w-40 bg-black border border-yellow-500 rounded-md shadow-lg z-50">
-        {isAuthenticated ? (
-            <LogoutLink className="block px-4 py-2 text-white hover:bg-yellow-500">Log Out</LogoutLink>
-        ) : (
-            <>
-                <LoginLink className="block px-4 py-2 text-white hover:bg-yellow-500">Sign In</LoginLink>
-                <RegisterLink className="block px-4 py-2 text-white hover:bg-yellow-500">Sign Up</RegisterLink>
-            </>
-        )}
+    
+            <Link href={"/logout"} className="block px-4 py-2 text-white hover:bg-yellow-500">Log Out</Link>
+        
+                <Link href={"/signin"} className="block px-4 py-2 text-white hover:bg-yellow-500">Sign In</Link>
+                <Link href={"/signup"} className="block px-4 py-2 text-white hover:bg-yellow-500">Sign Up</Link>
+        
+    
     </div>
 )}
                         <Link href="/cart"><FaShoppingBag className="text-yellow-500 text-2xl hover:text-orange-400 hover:-translate-y-2 duration-500" /></Link>
