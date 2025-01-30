@@ -27,6 +27,7 @@ const Home = () => {
       {/* Cheefs component to display chef-related content */}
       <Cheefs/>
       
+      
       {/* ChefGrid component to display chef images in a grid layout */}
       <ChefGrid/>
       

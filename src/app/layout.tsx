@@ -6,7 +6,7 @@ import { CartProvider } from "./Components/CartContext";
 import { SearchProvider } from "./Components/searchContext";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "./Components/CustomDesign/PageTransition";
-
+import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   title: "FoodTuck",
@@ -22,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
       >
+         
         <SearchProvider>
           <CartProvider>
             <Navbar /> {/* Navbar component */}
@@ -34,7 +36,10 @@ export default function RootLayout({
             <Footer /> {/* Footer component */}
           </CartProvider>
         </SearchProvider>
+        
       </body>
+      
     </html>
+    </ClerkProvider>
   );
 }

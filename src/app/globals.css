@@ -12,7 +12,10 @@ body {
     cursor: url('/crsr.png'), pointer;
   }
 
-
+  button[data-clerk-sign-in] {
+    color: white !important;
+  }
+  
 * {
     box-sizing: border-box;
 }

@@ -24,9 +24,17 @@ interface Food {
 const ShopProduct = () => {
   const [foods, setFoods] = useState<Food[]>([]);
   const [filteredFoods, setFilteredFoods] = useState<Food[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentpage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 6;
+
+
+  const indexOfLastItem = currentpage * itemsPerPage; // Example: Page 1 -> 6th item
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // Example: Page 1 -> 0th item
+  const currentItems = filteredFoods.slice(indexOfFirstItem, indexOfLastItem); // Slice the data
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,12 +78,29 @@ const ShopProduct = () => {
     setFilteredFoods(filtered);
   };
 
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategories((prevSelected) =>
+      prevSelected.includes(category)
+        ? prevSelected.filter((item) => item !== category)
+        : [...prevSelected, category]
+    );
+  };
+
+  useEffect(() => {
+    const filtered = foods.filter((food) =>
+      selectedCategories.length === 0 || selectedCategories.includes(food.category)
+    );
+    setFilteredFoods(filtered);
+  }, [selectedCategories, foods]);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   if (loading) {
     return (
       <div className="loader-overlay">
-            <FaUtensils className="loader-icon" />
-            <div className="loader-text">Cooking Something Special...</div>
-          </div>
+        <FaUtensils className="loader-icon" />
+        <div className="loader-text">Cooking Something Special...</div>
+      </div>
     );
   }
 
@@ -86,6 +111,11 @@ const ShopProduct = () => {
       </div>
     );
   }
+
+
+
+
+
 
   return (
     <div className="bg-gray-50 py-10">
@@ -112,7 +142,7 @@ const ShopProduct = () => {
             </p>
           ) : (
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredFoods.map((food) => (
+              {currentItems.map((food) => (
                 <li
                   key={food.slug}
                   className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
@@ -155,6 +185,32 @@ const ShopProduct = () => {
               ))}
             </ul>
           )}
+          {/* Pagination Buttons */}
+          <div className="flex justify-center items-center mt-8 space-x-4">
+            <button
+              className="border border-gray-300 text-gray-500 rounded-md px-4 py-2"
+              onClick={() => paginate(currentpage - 1)}
+              disabled={currentpage === 1}
+            >
+              &lt;&lt;
+            </button>
+            {[...Array(Math.ceil(filteredFoods.length / itemsPerPage))].map((_, index) => (
+              <button
+                key={index}
+                className={`border border-gray-300 text-gray-500 rounded-md px-4 py-2 ${currentpage === index + 1 ? "bg-[#FF9F0D] text-white" : ""}`}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              className="border border-gray-300 text-gray-500 rounded-md px-4 py-2"
+              onClick={() => paginate(currentpage + 1)}
+              disabled={currentpage === Math.ceil(filteredFoods.length / itemsPerPage)}
+            >
+              &gt;&gt;
+            </button>
+          </div>
         </div>
 
         {/* Right Section */}
@@ -163,38 +219,22 @@ const ShopProduct = () => {
           <div className="mb-6">
             <h3 className="text-xl font-bold text-gray-700 mb-4">Category</h3>
             <div className="space-y-4">
-              {["Lime", "Orange", "Mango", "Burger", "Pizza", "Cake", "Wrap", "Soup", "Salat", "Biryani", "Sandwich"].map(
-                (category) => (
-                  <div key={category} className="flex items-center space-x-2">
-                    <input type="checkbox" id={category} />
-                    <label htmlFor={category} className="text-gray-700">
-                      {category}
-                    </label>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-
-          {/* Latest Products */}
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-gray-700 mb-4">Latest Products</h3>
-            <div className="space-y-4">
-              {[{ name: "Chicken Tikka", price: 34, image: "/new.png" }, { name: "custurd", price: 40, image: "/h17.png" }, { name: "Muffin", price: 40, image: "/post2.png" }, { name: "Salat", price: 40, image: "/s3.png" }].map((product) => (
-                <div key={product.name} className="flex items-center space-x-4">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={71}
-                    height={65}
-                    className="object-cover"
+              {["BreakFast", "Lunch", "Dinner", "Desserts", "Main Course", "Deit Salad", "Snacks"].map((category) => (
+                <div key={category} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id={category}
+                    checked={selectedCategories.includes(category)}
+                    onChange={() => handleCategoryChange(category)}
                   />
-                  <div>
-                    <p className="text-sm text-gray-700">{product.name}</p>
-                    <p className="text-sm text-[#FF9F0D]">${product.price}.00</p>
-                  </div>
+                  <label htmlFor={category} className="text-gray-700">
+                    {category}
+                  </label>
                 </div>
               ))}
+            </div>
+            <div>
+              <input type="range" name="" id="" className="w-full accent-orange-500" />
             </div>
           </div>
         </div>
@@ -204,157 +244,3 @@ const ShopProduct = () => {
 };
 
 export default ShopProduct;
-
-// "use client";
-
-// import React, { useState, useEffect } from "react";
-// import Link from "next/link";
-// import Image from "next/image";
-// import { client } from "@/sanity/lib/client";
-// import CategoryFilter from "./CategoryFilter"; // Import the new component
-
-// interface Food {
-//   slug: string;
-//   name: string;
-//   category: string;
-//   description: string;
-//   price: number;
-//   originalPrice: number;
-//   tags: string;
-//   available: boolean;
-//   imageUrl: string;
-//   _createdAt: string;
-//   _updatedAt: string;
-// }
-
-// const ShopProduct = () => {
-//   const [foods, setFoods] = useState<Food[]>([]);
-//   const [filteredFoods, setFilteredFoods] = useState<Food[]>([]);
-//   const [searchQuery, setSearchQuery] = useState<string>("");
-//   const [selectedCategories, setSelectedCategories] = useState<string[]>([]); // Selected categories
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const [error, setError] = useState<string | null>(null);
-
-//   const allCategories = [
-//     "Fresh Lime",
-//     "Juices",
-//     "Drink",
-//     "Burger",
-//     "Pizza",
-//     "Donuts",
-//     "Hotdog",
-//     "Spaghity",
-//     "Salat",
-//     "Chicken Sekkh",
-//     "shoarma",
-//   ];
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const query = `*[_type == "food"]{
-//           name,
-//           category,
-//           description,
-//           price,
-//           originalPrice,
-//           available,
-//           tags,
-//           "slug": slug.current,
-//           "imageUrl": image.asset->url
-//         }`;
-//         const products = await client.fetch(query);
-//         setFoods(products);
-//         setFilteredFoods(products);
-//       } catch (err: any) {
-//         setError(err.message || "An unexpected error occurred");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   // Filter logic
-//   useEffect(() => {
-//     let filtered = foods;
-
-//     // Apply category filter
-//     if (selectedCategories.length > 0) {
-//       filtered = filtered.filter((food) =>
-//         selectedCategories.includes(food.category)
-//       );
-//     }
-
-//     // Apply search filter
-//     if (searchQuery) {
-//       filtered = filtered.filter((food) =>
-//         food.name.toLowerCase().includes(searchQuery.toLowerCase())
-//       );
-//     }
-
-//     setFilteredFoods(filtered);
-//   }, [searchQuery, selectedCategories, foods]);
-
-//   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setSearchQuery(event.target.value);
-//   };
-
-//   const handleCategoryChange = (category: string) => {
-//     setSelectedCategories((prev) =>
-//       prev.includes(category)
-//         ? prev.filter((c) => c !== category) // Remove category
-//         : [...prev, category] // Add category
-//     );
-//   };
-
-//   if (loading) return <p>Loading...</p>;
-//   if (error) return <p>Error: {error}</p>;
-
-//   return (
-//     <div className="bg-gray-50 py-10">
-//       <div className="container mx-auto flex flex-wrap">
-//         {/* Left Section */}
-//         <div className="w-full lg:w-[70%] px-4 mb-10">
-//           <input
-//             type="text"
-//             placeholder="Search by name..."
-//             value={searchQuery}
-//             onChange={handleSearch}
-//             className="w-full p-3 border border-gray-300 rounded-lg mb-4"
-//           />
-//           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-//             {filteredFoods.map((food) => (
-//               <li key={food.slug}>
-//                 <Link href={`/ourshops/${food.slug}`}>
-//                   <div>
-//                     <Image
-//                       src={food.imageUrl}
-//                       alt={food.name}
-//                       width={200}
-//                       height={150}
-//                     />
-//                     <p>{food.name}</p>
-//                   </div>
-//                 </Link>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-
-//         {/* Right Section */}
-//         <div className="w-full lg:w-[30%] px-4">
-//           <CategoryFilter
-//             categories={allCategories}
-//             selectedCategories={selectedCategories}
-//             onCategoryChange={handleCategoryChange}
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ShopProduct;
-

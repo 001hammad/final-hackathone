@@ -1,7 +1,9 @@
-import React from 'react';
+"use client";
+import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
+import { useSearchParams } from "next/navigation";
 import { FaFacebookF, FaTwitter, FaPinterestP } from "react-icons/fa";
+import { Inter } from 'next/font/google';
 import { Great_Vibes } from 'next/font/google';
 import LandingAbout from './LandingAboutSec';
 
@@ -47,46 +49,58 @@ const HeroImage = ({ src, alt, width, height }: { src: string, alt: string, widt
   </div>
 );
 
-const LandingHero = () => (
-  <div>
-    {/* Header Section */}
-    <div className='w-full h-[800px] bg-[#0D0D0DF2] relative'>
-      {/* Background Image */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <Image 
-          src="/home-bg.png" 
-          alt="Home Background" 
-          fill 
-          priority 
-          style={{ objectFit: 'cover', opacity: 0.5, zIndex: -1 }}
-        />
-      </div>
-      
-      {/* Hero Section */}
-      <div className='flex gap-[20px] md:mt-0 lg:gap-[80px]'>
-        
-        {/* Social Media Section */}
-        <div className='flex flex-col md:ml-0 ml-9'>
-          <Image src='/Line 11.png' alt='linepic' width={1} height={1} className='md:ml-[50px] lg:ml-[80px] ml-[7px] md:mt-[70px] text-[#FFFFFF]' />
-          <SocialMediaIcons />
-          <Image src='/Line 11.png' alt='linepic' width={1} height={1} className='md:ml-[50px] lg:ml-[80px] ml-[7px] md:mt-[50px] text-[#FFFFFF]' />
-        </div>
+const LandingHero = () => {
+  const searchParams = useSearchParams();
+  const loginRequired = searchParams.get("loginRequired");
 
-        {/* Hero Content Section */}
-        <div className='flex flex-col lg:gap-[180px] md:flex-row lg:flex-row'>
-          <HeroSection 
-            title="The Art of Speed Food Quality" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..." 
-            buttonText="See Menu" 
+  // ✅ Alert show kare jab user login na ho
+  useEffect(() => {
+    if (loginRequired) {
+      alert("You need to login first!");
+    }
+  }, [loginRequired]);
+
+  return (
+    <div>
+      {/* Header Section */}
+      <div className='w-full h-[800px] bg-[#0D0D0DF2] relative'>
+        {/* Background Image */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <Image 
+            src="/home-bg.png" 
+            alt="Home Background" 
+            fill 
+            priority 
+            style={{ objectFit: 'cover', opacity: 0.5, zIndex: -1 }}
           />
-          <HeroImage src='/mypic.png' alt='Hero Image' width={624} height={624}  />
+        </div>
+        
+        {/* Hero Section */}
+        <div className='flex gap-[20px] md:mt-0 lg:gap-[80px]'>
+          
+          {/* Social Media Section */}
+          <div className='flex flex-col md:ml-0 ml-9'>
+            <Image src='/Line 11.png' alt='linepic' width={1} height={1} className='md:ml-[50px] lg:ml-[80px] ml-[7px] md:mt-[70px] text-[#FFFFFF]' />
+            <SocialMediaIcons />
+            <Image src='/Line 11.png' alt='linepic' width={1} height={1} className='md:ml-[50px] lg:ml-[80px] ml-[7px] md:mt-[50px] text-[#FFFFFF]' />
+          </div>
+
+          {/* Hero Content Section */}
+          <div className='flex flex-col lg:gap-[180px] md:flex-row lg:flex-row'>
+            <HeroSection 
+              title="The Art of Speed Food Quality" 
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..." 
+              buttonText="See Menu" 
+            />
+            <HeroImage src='/mypic.png' alt='Hero Image' width={624} height={624}  />
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Hero Content Below Header */}
-    <LandingAbout/>
-  </div>
-);
+      {/* Hero Content Below Header */}
+      <LandingAbout/>
+    </div>
+  );
+};
 
 export default LandingHero;

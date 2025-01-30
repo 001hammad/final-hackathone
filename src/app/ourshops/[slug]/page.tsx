@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useEffect, useState } from "react";
 import { useCart } from "@/app/Components/CartContext";
@@ -28,6 +28,7 @@ const ShopDetailPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -84,9 +85,9 @@ const ShopDetailPage = () => {
   if (loading) {
     return (
       <div className="loader-overlay">
-            <FaUtensils className="loader-icon" />
-            <div className="loader-text">Cooking Something Special...</div>
-          </div>
+        <FaUtensils className="loader-icon" />
+        <div className="loader-text">Cooking Something Special...</div>
+      </div>
     );
   }
 
@@ -112,28 +113,36 @@ const ShopDetailPage = () => {
 
       <div className="container mx-auto p-4 flex flex-col lg:flex-row items-start gap-8">
         {/* Left Section: Thumbnail Images */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-row  lg:flex-col  gap-4">
           {[product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl].map((thumb, index) => (
-            <Image
-              key={index}
-              src={thumb}
-              alt={`${product.name} thumbnail ${index + 1}`}
-              width={80}
-              height={80}
-              className="rounded shadow cursor-pointer border border-gray-200 hover:border-black"
-            />
+            <div key={index} className="w-20 h-20 rounded shadow border border-gray-200 flex items-center justify-center">
+              {!imageLoaded && <div className="w-full h-full bg-gray-300 animate-pulse rounded"></div>}
+              <Image
+                src={thumb}
+                alt={`${product.name} thumbnail ${index + 1}`}
+                width={80}
+                height={80}
+                className={`rounded shadow cursor-pointer transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                onLoad={() => setImageLoaded(true)}
+              />
+            </div>
           ))}
         </div>
 
         {/* Center Section: Large Image */}
         <div className="flex-1">
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            width={500}
-            height={500}
-            className="rounded-lg shadow"
-          />
+          <div className="w-[500px] sm:h-[200px] lg:h-screen relative">
+            {!imageLoaded && <div className="absolute inset-0 bg-gray-300 animate-pulse rounded-lg"></div>}
+            <Image
+  src={product.imageUrl}
+  alt={product.name}
+  width={500}
+  height={500}
+  className={`rounded-lg shadow transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"} w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl`}
+  onLoad={() => setImageLoaded(true)}
+/>
+
+          </div>
         </div>
 
         {/* Right Section: Product Details */}
