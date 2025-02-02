@@ -13,13 +13,13 @@ const chefs = [
 
 const ChefGrid = () => {
   return (
-    <div className="md:mt-[5px] md:px-32 bg-black min-h-screen">
+    <div className=" md:px-32 bg-black min-h-screen">
       {/* Grid with responsive columns */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
         {chefs.map((chef, index) => (
           <div
             key={index}
-            className="relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl border-4 border-transparent hover:border-purple-600"
+            className="relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl border-4 border-transparent hover:border-orange-400"
           >
             {/* Chef Image */}
             <div className="relative flex-1">

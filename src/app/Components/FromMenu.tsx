@@ -12,7 +12,7 @@ const FromMenu = () => {
         {/* Title Section */}
         {/* <div className=' md:w-[144px] md:h-[40px] '> */}
         <div className="flex flex-col items-center justify-center">
-  <p className={`${VibeFont.className} font-normal text-[32px] leading-[40px] text-[#FF9F0D] text-center`}>
+  <p className={`${VibeFont.className} font-normal text-[32px] leading-[40px] text-[#FF9F0D] text-center mt-[200px]`}>
     Choose & pick
   </p>
   <h2 className="font-bold text-[28px] md:text-[48px] leading-[56px] text-[#FFFFFF] text-center">

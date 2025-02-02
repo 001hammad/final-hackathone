@@ -2,10 +2,12 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from "next/navigation";
-import { FaFacebookF, FaTwitter, FaPinterestP } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaPinterestP  } from "react-icons/fa";
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { Inter } from 'next/font/google';
 import { Great_Vibes } from 'next/font/google';
 import LandingAbout from './LandingAboutSec';
+
 
 // Load custom fonts
 const VibeFont = Great_Vibes({ subsets: ['latin'], weight: ['400'] });
@@ -27,9 +29,20 @@ const HeroSection = ({ title, description, buttonText }: { title: string, descri
     <p className='md:w-[418px] sm:w-[500px] md:h-[48px] leading-[24px] text-[14px] md:text-base text-[#FFFFFF] md:mt-5 md:my-0 my-4'>
       {description}
     </p>
-    <button className='md:w-[115px] w-[120px] rounded-[30px] md:h-[50px] bg-[#FF9F0D] flex justify-center items-center md:py-3 h-[50px] md:mt-[20px]'>
-      <p className={`${InterFont.className} text-[#E0DFDF] font-normal text-[16px] leading-[24px]`}>{buttonText}</p>
-    </button>
+    <button className='md:w-[115px] w-[120px] rounded-[30px] md:h-[50px] bg-[#FF9F0D] flex justify-center items-center gap-2 md:py-3 h-[50px] md:mt-[20px] 
+ transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#ff7b00] active:scale-95 group'>
+
+    <MdOutlineRestaurantMenu 
+        size={18} 
+        className="text-[#E0DFDF] transition-all duration-300 group-hover:rotate-180"
+    />
+
+    <p className={`${InterFont.className} text-[#E0DFDF] font-normal text-[16px] leading-[24px] transition-opacity duration-300 group-hover:opacity-90`}>
+        {buttonText}
+    </p>
+
+</button>
+
   </div>
 );
 

@@ -170,7 +170,7 @@ const ShopProduct = () => {
                           ${food.price.toFixed(2)}
                         </p>
                         <p className="text-sm line-through text-gray-500">
-                          ${food.originalPrice.toFixed(2)}
+                          ${food.originalPrice.toFixed(5)}
                         </p>
                       </div>
                       <div className="text-sm text-gray-500">

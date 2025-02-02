@@ -12,9 +12,6 @@ import LandingHero from './Components/LandingHerosec';
 const Home = () => {
   return (
     <div>
-      {/* Navbar component to display navigation menu */}
-      {/* <Navbar/> */}
-      
       {/* Header component for the top section of the page */}
       <LandingHero/>
       
@@ -40,8 +37,6 @@ const Home = () => {
       {/* BlogPost component to display blog posts */}
       <BlogPost/>
       
-      {/* Footer component to display the footer of the page */}
-      {/* <Footer/> */}
     </div>
   );
 }
