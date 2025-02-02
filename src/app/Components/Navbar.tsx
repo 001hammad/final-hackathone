@@ -61,6 +61,12 @@ const Navbar: React.FC = () => {
             Home
           </Link>
           <Link
+            href="/ourshops"
+            className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
+          >
+            Shop
+          </Link>
+          <Link
             href="/Menupage"
             className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
           >
@@ -84,12 +90,7 @@ const Navbar: React.FC = () => {
           >
             About
           </Link>
-          <Link
-            href="/ourshops"
-            className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
-          >
-            Shop
-          </Link>
+          
           <Link
             href="/OurChefs"
             className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
@@ -156,6 +157,12 @@ const Navbar: React.FC = () => {
             Home
           </Link>
           <Link
+            href="/ourshops"
+            className="text-white py-2 hover:text-orange-400 hover:-translate-y-2 duration-500"
+          >
+            Shop
+          </Link>
+          <Link
             href="/Menupage"
             className="text-white py-2 hover:text-orange-400 hover:-translate-y-2 duration-500"
           >
@@ -178,12 +185,6 @@ const Navbar: React.FC = () => {
             className="text-white py-2 hover:text-orange-400 hover:-translate-y-2 duration-500"
           >
             About
-          </Link>
-          <Link
-            href="/ourshops"
-            className="text-white py-2 hover:text-orange-400 hover:-translate-y-2 duration-500"
-          >
-            Shop
           </Link>
           <Link
             href="/OurChefs"
