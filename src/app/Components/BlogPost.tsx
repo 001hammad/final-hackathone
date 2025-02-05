@@ -9,17 +9,18 @@ const BlogPost = () => {
     <div className='bg-black min-h-screen py-8'>
       {/* Header */}
       <div className="container mx-auto px-4">
-        <h4 className={`${VibeFont.className} text-white text-3xl text-center md:text-left`}>
-          Blog Post
-        </h4>
-        <h4 className='font-bold text-2xl md:text-5xl leading-tight text-white text-center md:text-left mt-4 mb-10'>
-          <span className='text-[#FF9F0D]'>La</span>test News & Blog
-        </h4>
-      </div>
+  <h4 className={`${VibeFont.className} text-white text-3xl sm:text-4xl md:text-5xl text-center md:text-left md:pl-10`}>
+    Blog Post
+  </h4>
+  <h4 className='font-bold text-2xl sm:text-3xl md:text-5xl leading-tight text-white text-center md:text-left mt-4 mb-10 md:pl-10'>
+    <span className='text-[#FF9F0D]'>La</span>test News & Blog
+  </h4>
+</div>
+
 
       {/* Blog Cards */}
-      <div className="container mx-auto px-4">
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9'>
+      <div className="container mx-auto px-4 flex justify-center">
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9 max-w-7xl'>
           {/* Card 1 */}
           <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-black border border-white">
             <Image 

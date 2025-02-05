@@ -1,463 +1,243 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Checkout = () => {
   const router = useRouter();
+
+  // Cart and Discount State
   const [cart, setCart] = useState<CartItem[]>([]);
   const [discount, setDiscount] = useState(0);
 
+  // Define Cart Item Type
   type CartItem = {
     id: string;
     name: string;
     quantity: number;
     price: number;
+    image?: string; // Optional image URL
   };
 
-  type Address = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    company: string;
-    country: "" | typeof countries[number]; // Allowing empty string along with the country values
-    city: string;
-    zipCode: string;
-    address1: string;
-    address2: string;
-  };
-  
-  // Shipping and billing address state
-  const [shippingAddress, setShippingAddress] = useState<Address>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    company: '',
-    country: '' as keyof typeof cities,
-    city: '',
-    zipCode: '',
-    address1: '',
-    address2: ''
+  // Shipping Address State
+  const [shippingAddress, setShippingAddress] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    company: "",
+    country: "",
+    city: "",
+    zipCode: "",
+    address1: "",
+    address2: "",
   });
-
-  const [billingAddress, setBillingAddress] = useState<Address>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    company: '',
-    country: '' as keyof typeof cities,
-    city: '',
-    zipCode: '',
-    address1: '',
-    address2: ''
-  });
-
-  const [sameAsShipping, setSameAsShipping] = useState(false);
 
   // Example data for country and city selection
-  const countries = [ 'Pakistan', 'United States', 'Canada', 'United Kingdom'] as const;
+  const countries = ["Pakistan", "United States", "Canada", "United Kingdom"] as const;
   const cities = {
-    'Pakistan': ['Karachi', 'Lahore', 'Islamabad', 'Peshawar'],
-    'United States': ['New York', 'Los Angeles', 'Chicago', 'Houston'],
-    'Canada': ['Toronto', 'Vancouver', 'Montreal', 'Calgary'],
-    'United Kingdom': ['London', 'Manchester', 'Birmingham', 'Leeds']
+    Pakistan: ["Karachi", "Lahore", "Islamabad", "Peshawar"],
+    "United States": ["New York", "Los Angeles", "Chicago", "Houston"],
+    Canada: ["Toronto", "Vancouver", "Montreal", "Calgary"],
+    "United Kingdom": ["London", "Manchester", "Birmingham", "Leeds"],
   };
 
+  // Fetch Cart and Discount from Query Parameters
   useEffect(() => {
-    // Get cart and discount from query parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const cartData = JSON.parse(urlParams.get('cart') || '[]');
-    const discountData = parseFloat(urlParams.get('discount') || '0');
-
+    const cartData = JSON.parse(urlParams.get("cart") || "[]");
+    const discountData = parseFloat(urlParams.get("discount") || "0");
     setCart(cartData);
     setDiscount(discountData);
   }, []);
 
-  // Calculate cart subtotal
+  // Calculate Subtotal, Shipping, and Total Amount
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-
-  // Calculate shipping charge (example fixed value)
   const shippingCharge = 10.0;
-
-  // Calculate total amount
   const totalAmount = subtotal + shippingCharge - discount;
 
-  // Handle place order
+  // Handle Shipping Address Change
+  const handleShippingAddressChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setShippingAddress((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle Place Order
   const handlePlaceOrder = () => {
-    alert('Order placed successfully!');
-    // You can redirect to a confirmation page or reset the cart here
-    router.push('/');
-  };
-
-  // Handle shipping address change
-  const handleShippingAddressChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setShippingAddress((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  // Handle billing address change
-  const handleBillingAddressChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setBillingAddress((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  // Toggle the billing address checkbox
-  const handleSameAsShippingToggle = () => {
-    setSameAsShipping(!sameAsShipping);
-    if (!sameAsShipping) {
-      setBillingAddress(shippingAddress);
-    } else {
-      setBillingAddress({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        company: '',
-        country: '' ,
-        city: '',
-        zipCode: '',
-        address1: '',
-        address2: ''
-      });
+    // Add validation to check if shipping address is complete
+    if (!shippingAddress.firstName || !shippingAddress.lastName || !shippingAddress.email || !shippingAddress.phoneNumber) {
+      alert("Please complete the shipping address fields.");
+      return;
     }
+
+    alert("Order placed successfully!");
+    router.push("/");
   };
 
   return (
-    <div className="w-full flex flex-col space-y-6 px-4 md:px-[20px] py-[20px]">
-      <h2 className="font-bold text-xl md:text-2xl mb-4">Checkout</h2>
+    <div className="p-6 max-w-7xl mx-auto">
+      {/* Main Layout */}
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Left Section: Shipping Address */}
+        <div className="w-full md:w-2/3 space-y-6">
+          <div>
+            <h2 className="text-3xl font-bold mb-4 text-gray-700">Shipping Address</h2>
+            <form className="space-y-6">
+              {/* Name Fields: First Name and Last Name in one row */}
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={shippingAddress.firstName}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={shippingAddress.lastName}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+              </div>
 
-      {/* Shipping Address Form */}
-      <div className="w-full border p-4 rounded-lg mb-6">
-        <h3 className="font-bold text-lg mb-4">Shipping Address</h3>
-        <form className="space-y-4">
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={shippingAddress.firstName}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="First Name"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={shippingAddress.lastName}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Last Name"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Email Address</label>
-              <input
-                type="email"
-                name="email"
-                value={shippingAddress.email}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Email Address"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Phone Number</label>
-              <input
-                type="text"
-                name="phoneNumber"
-                value={shippingAddress.phoneNumber}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Phone Number"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Company</label>
-              <input
-                type="text"
-                name="company"
-                value={shippingAddress.company}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Company"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Country</label>
-              <select
-                name="country"
-                value={shippingAddress.country}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-              >
-                <option value="">Select Country</option>
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">City</label>
-              <select
-                name="city"
-                value={shippingAddress.city}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                disabled={!shippingAddress.country}
-              >
-                <option value="">Select City</option>
-                {shippingAddress.country && cities[shippingAddress.country]?.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Zip Code</label>
-              <input
-                type="text"
-                name="zipCode"
-                value={shippingAddress.zipCode}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Zip Code"
-              />
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Address Line 1</label>
-              <input
-                type="text"
-                name="address1"
-                value={shippingAddress.address1}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Address Line 1"
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-semibold mb-2">Address Line 2</label>
-              <input
-                type="text"
-                name="address2"
-                value={shippingAddress.address2}
-                onChange={handleShippingAddressChange}
-                className="w-full px-4 py-2 border rounded-md"
-                placeholder="Address Line 2"
-              />
-            </div>
-          </div>
-        </form>
-      </div>
+              {/* Contact Information: Email, Phone Number */}
+              <div className="space-y-4">
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={shippingAddress.email}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    value={shippingAddress.phoneNumber}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+              </div>
 
-      {/* Billing Address Checkbox */}
-      <div className="flex items-center space-x-2 mb-6">
-        <input
-          type="checkbox"
-          id="sameAsShipping"
-          checked={sameAsShipping}
-          onChange={handleSameAsShippingToggle}
-          className="h-4 w-4"
-        />
-        <label htmlFor="sameAsShipping" className="text-sm font-semibold">
-          Billing Address same as Shipping Address
-        </label>
-      </div>
+              {/* Shipping Address Fields: Country, City, etc. */}
+              <div className="space-y-4">
+                <div>
+                  <select
+                    name="country"
+                    value={shippingAddress.country}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  >
+                    <option value="">Select Country</option>
+                    {countries.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name="city"
+                    value={shippingAddress.city}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  >
+                    <option value="">Select City</option>
+                    {(cities[shippingAddress.country as keyof typeof cities] || []).map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="address1"
+                    placeholder="Address Line 1"
+                    value={shippingAddress.address1}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="address2"
+                    placeholder="Address Line 2"
+                    value={shippingAddress.address2}
+                    onChange={handleShippingAddressChange}
+                    className="border p-2 rounded-md w-full"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
 
-      {/* Billing Address Form */}
-      {!sameAsShipping && (
-        <div className="w-full border p-4 rounded-lg mb-6">
-          <h3 className="font-bold text-lg mb-4">Billing Address</h3>
-          <form className="space-y-4">
-            {/* Similar inputs as for shipping address */}
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={billingAddress.firstName}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="First Name"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={billingAddress.lastName}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Last Name"
-                />
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={billingAddress.email}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Email Address"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Phone Number</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={billingAddress.phoneNumber}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Phone Number"
-                />
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Company</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={billingAddress.company}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Company"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Country</label>
-                <select
-                  name="country"
-                  value={billingAddress.country}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                >
-                  <option value="">Select Country</option>
-                  {countries.map((country) => (
-                    <option key={country} value={country}>
-                      {country}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">City</label>
-                <select
-                  name="city"
-                  value={billingAddress.city}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  disabled={!billingAddress.country}
-                >
-                  <option value="">Select City</option>
-                  {billingAddress.country && cities[billingAddress.country]?.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Zip Code</label>
-                <input
-                  type="text"
-                  name="zipCode"
-                  value={billingAddress.zipCode}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Zip Code"
-                />
-              </div>
-            </div>
-            <div className="flex space-x-4">
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Address Line 1</label>
-                <input
-                  type="text"
-                  name="address1"
-                  value={billingAddress.address1}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Address Line 1"
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block text-sm font-semibold mb-2">Address Line 2</label>
-                <input
-                  type="text"
-                  name="address2"
-                  value={billingAddress.address2}
-                  onChange={handleBillingAddressChange}
-                  className="w-full px-4 py-2 border rounded-md"
-                  placeholder="Address Line 2"
-                />
-              </div>
-            </div>
-          </form>
+          {/* Place Order Button */}
+          <button
+            onClick={handlePlaceOrder}
+            className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-md w-full hover:bg-blue-600 transition-colors"
+          >
+            Place Order
+          </button>
         </div>
-      )}
 
-      {/* Total and Order Summary */}
-      <div className="w-full border p-4 rounded-lg mb-6">
-        <h3 className="font-bold text-lg mb-4">Order Summary</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span className="font-medium">Subtotal</span>
-            <span>{subtotal.toFixed(2)} USD</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="font-medium">Shipping</span>
-            <span>{shippingCharge.toFixed(2)} USD</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="font-medium">Discount</span>
-            <span>-{discount.toFixed(2)} USD</span>
-          </div>
-          <div className="flex justify-between font-semibold">
-            <span>Total</span>
-            <span>{totalAmount.toFixed(2)} USD</span>
+        {/* Right Section: Order Summary */}
+        <div className="w-full md:w-1/3 bg-gray-100 p-6 rounded-md space-y-4">
+          <h2 className="text-2xl font-bold mb-4 text-gray-700">Order Summary</h2>
+          <div className="space-y-4">
+            {cart.map((item: CartItem, index: number) => (
+              <div key={index} className="flex items-center space-x-4">
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={50}
+                    height={50}
+                    className="rounded-md"
+                  />
+                )}
+                <div>
+                  <p className="text-gray-700">{item.name}</p>
+                  <p className="text-gray-500">{item.quantity} x ${item.price.toFixed(2)}</p>
+                </div>
+              </div>
+            ))}
+            <div className="flex justify-between text-lg font-medium">
+              <span>Subtotal:</span>
+              <span>${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-lg font-medium">
+              <span>Shipping:</span>
+              <span>${shippingCharge.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-lg font-medium">
+              <span>Discount:</span>
+              <span>-${discount.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between font-bold text-xl">
+              <span>Total:</span>
+              <span>${totalAmount.toFixed(2)}</span>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Place Order Button */}
-      <button
-        onClick={handlePlaceOrder}
-        className="w-full py-3 bg-[#FF9F0D] text-white text-lg font-semibold rounded-md"
-      >
-        Place Order
-      </button>
     </div>
   );
 };

@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { FaFacebookF, FaTwitter, FaPinterestP  } from "react-icons/fa";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { Inter } from 'next/font/google';
-import { Great_Vibes } from 'next/font/google';
 import LandingAbout from './LandingAboutSec';
+import { Great_Vibes } from 'next/font/google';
 
 
 // Load custom fonts
