@@ -10,12 +10,13 @@ import {
 } from "react-icons/fa";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { motion } from "framer-motion";
-
-
+import { useCart } from "./CartContext";
+import { FaRegHeart } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle state
   const [userMenuOpen, setUserMenuOpen] = useState(false); // User dropdown state
+  const { getItemCount } = useCart(); // Get cart item count
 
   // Function to toggle the mobile menu
   const toggleMenu = () => {
@@ -26,10 +27,7 @@ const Navbar: React.FC = () => {
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
   };
-//   console.log("User Auth Status:", isAuthenticated);
-//   console.log("Loading Status:", isLoading);
-//   if (isLoading) return <p className="text-black">Loading...</p>;
-
+  
   return (
     <nav className="flex flex-col items-center p-4 bg-black relative">
       {/* Navbar header */}
@@ -60,6 +58,7 @@ const Navbar: React.FC = () => {
           >
             Home
           </Link>
+          
           <Link
             href="/ourshops"
             className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
@@ -90,7 +89,7 @@ const Navbar: React.FC = () => {
           >
             About
           </Link>
-          
+
           <Link
             href="/OurChefs"
             className="hover:text-yellow-600 text-white hover:-translate-y-2 duration-500"
@@ -120,28 +119,42 @@ const Navbar: React.FC = () => {
               <FaRegUser className="hover:-translate-y-2 duration-500" />
             </button>
             {userMenuOpen && (
-    <motion.div
-      initial={{ opacity: 0, scaleY: 0 }}
-      animate={{ opacity: 1, scaleY: 1 }}
-      exit={{ opacity: 0, scaleY: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="absolute top-full mt-6 mr-8 w-20 border border-yellow-500 rounded-md shadow-lg z-50 p-2 bg-orange-400 origin-top text-center"
-    >
-      <div className="text-white">
-      <SignedOut>
-        <div className="text-white">
-          <SignInButton />
-        </div>
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-      </div>
-    </motion.div>
-  )}
+              <motion.div
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1 }}
+                exit={{ opacity: 0, scaleY: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute top-full mt-6 mr-8 w-20 border border-yellow-500 rounded-md shadow-lg z-50 p-2 bg-orange-400 origin-top text-center"
+              >
+                <div className="text-white">
+                  <SignedOut>
+                    <div className="text-white">
+                      <SignInButton />
+                    </div>
+                  </SignedOut>
+                  <SignedIn>
+                    <UserButton />
+                  </SignedIn>
+                </div>
+              </motion.div>
+            )}
           </div>
-          <Link href="/cart">
-            <FaShoppingBag className="ml-4 text-2xl hover:text-orange-300 text-white hover:-translate-y-2 duration-500" />
+          <Link href="/wishlist">
+            {" "}
+            <div className="text-white ml-4 hover:text-red-600 hover:-translate-y-2 duration-500">
+              <FaRegHeart className="text-2xl" />
+            </div>
+          </Link>
+          <Link
+            href="/cart"
+            className="relative hover:text-orange-300 text-white hover:-translate-y-2 duration-500"
+          >
+            <FaShoppingBag className="ml-4 text-2xl " />
+
+            {/* Cart Item Count Badge */}
+            <span className="absolute top-0  left-7 text-sm text-white bg-orange-400 rounded-full px-2">
+              {getItemCount()} {/* Display the cart item count */}
+            </span>
           </Link>{" "}
           {/* Shopping bag icon */}
         </div>
@@ -201,33 +214,46 @@ const Navbar: React.FC = () => {
 
             {/* User dropdown for both mobile and desktop */}
             {userMenuOpen && (
- 
- <div className="relative flex justify-center">
+              <div className="relative flex justify-center">
+                {userMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    animate={{ opacity: 1, scaleY: 1 }}
+                    exit={{ opacity: 0, scaleY: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="absolute top-full mt-6 mr-8 w-40 border border-yellow-500 rounded-md shadow-lg z-50 p-2 bg-black origin-top text-center"
+                  >
+                    <SignedOut>
+                      <div className="text-white">
+                        <SignInButton />
+                      </div>
+                    </SignedOut>
+                    <SignedIn>
+                      <UserButton />
+                    </SignedIn>
+                  </motion.div>
+                )}
+              </div>
+            )}
+             <Link href="/wishlist">
+            {" "}
+            <div className=" ml-4 hover:text-red-600 text-orange-300 hover:-translate-y-2 duration-500">
+              <FaRegHeart className="text-2xl" />
+            </div>
+             {/* Cart Item Count Badge */}
+             
+          </Link>
 
-  {userMenuOpen && (
-    <motion.div
-      initial={{ opacity: 0, scaleY: 0 }}
-      animate={{ opacity: 1, scaleY: 1 }}
-      exit={{ opacity: 0, scaleY: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="absolute top-full mt-6 mr-8 w-40 border border-yellow-500 rounded-md shadow-lg z-50 p-2 bg-black origin-top text-center"
-    >
-      <SignedOut>
-        <div className="text-white">
-          <SignInButton />
-        </div>
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </motion.div>
-  )}
-</div>
+            <Link
+              href="/cart"
+              className="relative hover:-translate-y-2 duration-500 "
+            >
+              <FaShoppingBag className="ml-4 text-2xl text-orange-300 hover:text-orange-300  hover:-translate-y-2 duration-500" />
 
-)}
-
-            <Link href="/cart">
-              <FaShoppingBag className="text-yellow-500 text-2xl hover:text-orange-400 hover:-translate-y-2 duration-500" />
+              {/* Cart Item Count Badge */}
+              <span className="absolute top-0 left-7 text-sm  text-white bg-orange-400 rounded-full px-2">
+                {getItemCount()} {/* Display the cart item count */}
+              </span>
             </Link>
           </div>
         </div>

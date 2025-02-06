@@ -118,6 +118,7 @@ type CartContextType = {
   updateItemQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   calculateTotalPrice: () => number;
+  getItemCount: () => number;  // New method to get total item count
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -188,6 +189,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("cart");
   };
 
+  // 🛍️ Get total number of items in the cart
+  const getItemCount = () => {
+    return cart.reduce((count, item) => count + item.quantity, 0);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -197,6 +203,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         updateItemQuantity,
         clearCart,
         calculateTotalPrice,
+        getItemCount,  // Providing the getItemCount method
       }}
     >
       {children}

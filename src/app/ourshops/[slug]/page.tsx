@@ -1,12 +1,15 @@
-'use client'
+// app/product/[slug]/page.tsx
+
+'use client';
 
 import { useEffect, useState } from "react";
-import { useCart } from "@/app/Components/CartContext";
 import { useParams } from "next/navigation";
 import HeroSection from "@/app/Components/HeroSection";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
-import { FaUtensils } from "react-icons/fa";
+import { FaFacebook, FaHeart, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { useWishlist } from "@/app/Components/wishlistContext"; // Import Wishlist Context
+import { useCart } from "@/app/Components/CartContext"; // Import Cart Context
 
 interface ProductDetail {
   slug: string;
@@ -22,33 +25,57 @@ interface ProductDetail {
 const ShopDetailPage = () => {
   const params = useParams();
   const { slug } = params;
-  const { addToCart } = useCart();
+  const [notification, setNotification] = useState<string | null>(null);
   const [product, setProduct] = useState<ProductDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [message, setMessage] = useState("");
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const { addToWishlist, wishlist } = useWishlist(); // Use Wishlist Context
+  const { addToCart } = useCart(); // Use Cart Context
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  const handleAddtoCart = () => {
+  const handleAddToWishlist = () => {
+    if (product) {
+      addToWishlist({
+        id: product.slug,
+        name: product.name,
+        price: product.price,
+        image: product.imageUrl,
+        largeImage: product.largeImage || product.imageUrl,
+        status: product.status || "available", // Default status if not available
+      });
+      setNotification("Item added to wishlist!");
+
+      // Hide the notification after 3 seconds
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
+    }
+  };
+
+  const handleAddToCart = () => {
     if (product) {
       addToCart({
         id: product.slug,
         name: product.name,
         price: product.price,
         quantity,
-        rating: product.rating || 0,
         image: product.imageUrl,
         largeImage: product.largeImage || product.imageUrl,
-        status: product.status || "available",
+        status: product.status || "available", // Default status if not available
+        rating: product.rating || 0, // Add rating, defaulting to 0 if not available
       });
-      setMessage("Item added to cart successfully!");
-      setTimeout(() => setMessage(""), 3000);
+      setNotification("Item added to cart!");
+  
+      // Hide the notification after 3 seconds
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
     }
   };
+  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -70,7 +97,6 @@ const ShopDetailPage = () => {
           setError("Product not found");
         }
       } catch (error) {
-        console.error("Error fetching product details:", error);
         setError("Failed to fetch product details");
       } finally {
         setLoading(false);
@@ -82,98 +108,76 @@ const ShopDetailPage = () => {
     }
   }, [slug]);
 
+  const isInWishlist = wishlist.some(item => item.id === product?.slug);
+
   if (loading) {
-    return (
-      <div className="loader-overlay">
-        <FaUtensils className="loader-icon" />
-        <div className="loader-text">Cooking Something Special...</div>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <p className="text-xl font-medium text-red-600">Error: {error}</p>
-      </div>
-    );
-  }
-
-  if (!product) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <p className="text-xl font-medium text-gray-700">Product not found</p>
-      </div>
-    );
+  if (error || !product) {
+    return <div>Error: {error || "Product not found"}</div>;
   }
 
   return (
     <div>
       <HeroSection title="Shop details" currentPage="shop detail" backgroundImage="/starbg.png" homeLink="/" />
 
-      <div className="container mx-auto p-4 flex flex-col lg:flex-row items-start gap-8">
-        {/* Left Section: Thumbnail Images */}
-        <div className="flex flex-row  lg:flex-col  gap-4">
-          {[product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl].map((thumb, index) => (
-            <div key={index} className="w-20 h-20 rounded shadow border border-gray-200 flex items-center justify-center">
-              {!imageLoaded && <div className="w-full h-full bg-gray-300 animate-pulse rounded"></div>}
-              <Image
-                src={thumb}
-                alt={`${product.name} thumbnail ${index + 1}`}
-                width={80}
-                height={80}
-                className={`rounded shadow cursor-pointer transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-                onLoad={() => setImageLoaded(true)}
-              />
-            </div>
+      {/* Notification Label */}
+      {notification && (
+        <div className="notification fixed bottom-10 right-10 bg-green-500 text-white p-4 rounded-lg shadow-lg transform transition-all duration-500 flex items-center">
+          <span className="icon text-2xl mr-4">✓</span> {/* Success Icon */}
+          <span>{notification}</span> {/* Notification Text */}
+        </div>
+      )}
+
+      <div className="container mx-auto p-4 flex flex-col lg:flex-row items-center lg:items-start gap-8">
+        {/* Thumbnail Images with Scroll on Mobile */}
+        <div className="w-full lg:w-auto flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible scrollbar-hide justify-center">
+          {[...Array(4)].map((_, index) => (
+            <Image key={index} src={product?.imageUrl} width={132} height={129} className="rounded border-2 w-[132px] h-[129px] object-cover flex-shrink-0" alt="thumbnail" />
           ))}
         </div>
 
-        {/* Center Section: Large Image */}
-        <div className="flex-1">
-          <div className="w-[500px] sm:h-[200px] lg:h-screen relative">
-            {!imageLoaded && <div className="absolute inset-0 bg-gray-300 animate-pulse rounded-lg"></div>}
-            <Image
-  src={product.imageUrl}
-  alt={product.name}
-  width={500}
-  height={500}
-  className={`rounded-lg shadow transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"} w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl`}
-  onLoad={() => setImageLoaded(true)}
-/>
-
-          </div>
+        {/* Large Image */}
+        <div className="w-full lg:w-[491px] h-[400px] lg:h-[596px] flex justify-center">
+          <Image src={product?.largeImage} width={491} height={596} className="rounded w-full h-full object-cover" alt="large" />
         </div>
 
-        {/* Right Section: Product Details */}
-        <div className="flex-1 space-y-4">
-          <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-gray-600">{product.description}</p>
-          <p className="text-green-600 text-xl font-semibold">
-            Price: ${product.price.toFixed(2)}
-          </p>
+        {/* Product Details */}
+        <div className="space-y-4 w-full lg:w-auto text-center lg:text-left">
+          <span className="bg-[#FF9F0D] px-4 py-1 rounded text-white inline-block">In Stock</span>
+          <h1 className="text-2xl font-bold">{product?.name}</h1>
+          <p>{product?.description}</p>
+          <p className="text-xl font-semibold">${product?.price.toFixed(2)}</p>
+          <div className="flex items-center justify-center gap-2">
+            {[...Array(5)].map((_, i) => (
+              <span key={i}>⭐</span>
+            ))}
+          </div>
 
           {/* Quantity Adjuster */}
-          <div className="flex items-center gap-4">
-            <button onClick={decreaseQuantity} className="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
-              -
-            </button>
-            <span className="text-lg font-medium">{quantity}</span>
-            <button onClick={increaseQuantity} className="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
-              +
+          <div className="flex items-center justify-center border px-3 py-2 rounded w-fit mx-auto lg:mx-0">
+            <button onClick={decreaseQuantity} className="px-3">-</button>
+            <span className="px-4">{quantity}</span>
+            <button onClick={increaseQuantity} className="px-3">+</button>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col gap-2">
+            <button onClick={handleAddToCart} className="bg-[#FF9F0D] px-6 py-2 text-white rounded w-full lg:w-auto">Add to Cart</button>
+            <button onClick={handleAddToWishlist} className={`flex items-center justify-center gap-2 mt-2 text-gray-600 mx-auto lg:mx-0 ${isInWishlist ? 'text-red-500' : ''}`}>
+              <FaHeart /> {isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
             </button>
           </div>
 
-          {/* Add to Cart Button */}
-          <button
-            onClick={handleAddtoCart}
-            className="px-6 py-2 bg-[#FF9F0D] text-white font-medium text-lg rounded hover:bg-[#e68a00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF9F0D]"
-          >
-            Add to Cart
-          </button>
-
-          {/* Success Message */}
-          {message && <p className="text-green-600 mt-2">{message}</p>}
+          {/* Social Links */}
+          <div className="flex justify-center gap-3 mt-4">
+            <FaFacebook />
+            <FaTwitter />
+            <FaTiktok />
+            <FaYoutube />
+            <FaWhatsapp />
+          </div>
         </div>
       </div>
     </div>

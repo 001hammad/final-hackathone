@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+.notification {
+  background-color: #FF9F0D; /* Background color for the notification */
+  color: white; /* Text color to contrast with the background */
+  border-radius: 8px; /* Rounded corners for a smoother feel */
+  padding: 15px 25px; /* More padding for a larger notification */
+  font-size: 18px; /* Increased font size for prominence */
+  display: flex; /* To align the icon and text */
+  align-items: center; /* Vertically center the items */
+  animation: slideInOutVIP 4s cubic-bezier(0.25, 1.0, 0.5, 1) forwards;
+}
+
+.notification .icon {
+  font-size: 24px; /* Size of the success icon */
+  margin-right: 15px; /* Space between icon and text */
+}
+
+@keyframes slideInOutVIP {
+  0% {
+    transform: translateX(100%); /* Start off-screen from the right */
+    opacity: 0; /* Invisible at the start */
+  }
+  25% {
+    transform: translateX(0); /* Smoothly slide to the center */
+    opacity: 1; /* Fully visible */
+  }
+  40% {
+    transform: translateX(-5%); /* Slight shift to the left */
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(5%); /* Slight shift to the right */
+    opacity: 1; /* Keep it visible */
+  }
+  75% {
+    transform: translateX(0); /* Return back to center */
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%); /* Exit smoothly to the left */
+    opacity: 0; /* Fade out before disappearing */
+  }
+}
+
 
 
 /* body {
