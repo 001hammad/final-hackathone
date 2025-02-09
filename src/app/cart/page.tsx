@@ -7,7 +7,7 @@ import HeroSection from "../Components/HeroSection";
 import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation"; // Importing useRouter from 'next/router'
 
-// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string);
 
 const CartPage = () => {
   const { cart, removeItem, updateItemQuantity, calculateTotalPrice } = useCart();
