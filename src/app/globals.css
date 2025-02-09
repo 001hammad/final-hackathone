@@ -49,11 +49,11 @@
 
 /* body {
     cursor: url('/crsr.png'), auto;
-  } */
+  } 
     
-  /* button:hover, a:hover {
+  button:hover, a:hover {
     cursor: url('/crsr.png'), pointer;
-  } */
+  }  */
 
   button[data-clerk-sign-in] {
     color: white !important;

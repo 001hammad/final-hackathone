@@ -51,6 +51,7 @@ const ShopProduct = () => {
           "imageUrl": image.asset->url
         }`;
         const products = await client.fetch(query);
+        // console.log(products[5])
         setFoods(products);
         setFilteredFoods(products);
       } catch (err: unknown) {
@@ -219,7 +220,7 @@ const ShopProduct = () => {
           <div className="mb-6">
             <h3 className="text-xl font-bold text-gray-700 mb-4">Category</h3>
             <div className="space-y-4">
-              {["BreakFast", "Lunch", "Dinner", "Desserts", "Main Course", "Deit Salad", "Snacks"].map((category) => (
+              {["BreakFast", "Lunch", "Dinner", " Desserts", "Main Course", "Deit Salad", "Snacks"].map((category) => (
                 <div key={category} className="flex items-center space-x-2">
                   <input
                     type="checkbox"
