@@ -11,7 +11,7 @@ interface WishlistItem {
   image: string;
   largeImage: string;
   slug?: string;
-  status: string;  // Adding status as required
+  status: string;
 }
 
 type WishlistContextType = {

@@ -7,7 +7,8 @@ import { useParams } from "next/navigation";
 import HeroSection from "@/app/Components/HeroSection";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
-import { FaFacebook, FaHeart, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaHeart, FaTiktok,FaStar, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa";
+
 import { useWishlist } from "@/app/Components/wishlistContext"; // Import Wishlist Context
 import { useCart } from "@/app/Components/CartContext"; // Import Cart Context
 
@@ -32,6 +33,10 @@ const ShopDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const { addToWishlist, wishlist } = useWishlist(); // Use Wishlist Context
   const { addToCart } = useCart(); // Use Cart Context
+  const [userRating, setUserRating] = useState<number>(0); // Store user's rating
+  const handleRating = (index: number) => {
+    setUserRating(index + 1); // Update rating when user clicks
+  };
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
   const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -130,7 +135,7 @@ const ShopDetailPage = () => {
         </div>
       )}
 
-      <div className="container mx-auto p-4 flex flex-col lg:flex-row items-center lg:items-start gap-8">
+      <div className="container  mx-auto p-4 flex flex-col lg:flex-row items-center lg:items-start gap-8">
         {/* Thumbnail Images with Scroll on Mobile */}
         <div className="w-full lg:w-auto flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible scrollbar-hide justify-center">
           {[...Array(4)].map((_, index) => (
@@ -149,11 +154,22 @@ const ShopDetailPage = () => {
           <h1 className="text-2xl font-bold">{product?.name}</h1>
           <p>{product?.description}</p>
           <p className="text-xl font-semibold">${product?.price.toFixed(2)}</p>
-          <div className="flex items-center justify-center gap-2">
+          {/* <div className="flex items-center justify-center gap-2">
             {[...Array(5)].map((_, i) => (
               <span key={i}>⭐</span>
             ))}
-          </div>
+          </div> */}
+          <div className="flex items-center justify-center lg:items-start lg:justify-start gap-2">
+  {[...Array(5)].map((_, i) => (
+    <FaStar
+      key={i}
+      onClick={() => handleRating(i)}
+      className={`cursor-pointer text-2xl transition-colors duration-300 ${
+        i < userRating ? "text-orange-500" : "text-gray-400"
+      }`}
+    />
+  ))}
+</div>
 
           {/* Quantity Adjuster */}
           <div className="flex items-center justify-center border px-3 py-2 rounded w-fit mx-auto lg:mx-0">
@@ -165,8 +181,8 @@ const ShopDetailPage = () => {
           {/* Buttons */}
           <div className="flex flex-col gap-2">
             <button onClick={handleAddToCart} className="bg-[#FF9F0D] px-6 py-2 text-white rounded w-full lg:w-auto">Add to Cart</button>
-            <button onClick={handleAddToWishlist} className={`flex items-center justify-center gap-2 mt-2 text-gray-600 mx-auto lg:mx-0 ${isInWishlist ? 'text-red-500' : ''}`}>
-              <FaHeart /> {isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
+            <button onClick={handleAddToWishlist} className={`flex items-center text-2xl justify-center lg:items-start lg:justify-start gap-2 mt-2 text-gray-600 mx-auto lg:mx-0 ${isInWishlist ? 'text-red-500' : ''}`}>
+              <FaHeart className="mt-1 text-2xl"/> {isInWishlist ? 'Added to Wishlist' : 'Add to Wishlist'}
             </button>
           </div>
 
