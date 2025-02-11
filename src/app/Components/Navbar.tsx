@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
         
         )}
           <div className="relative">
-            <FaRegUser className="text-white text-2xl" onClick={toggleUserMenu} />
+            <FaRegUser className="text-white cursor-pointer text-2xl" onClick={toggleUserMenu} />
             {userMenuOpen && (
               <motion.div
                 initial={{ opacity: 0, scaleY: 0 }}
